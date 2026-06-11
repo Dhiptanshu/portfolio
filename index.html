@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work in Progress</title>
+    <meta name="description" content="Portfolio work in progress. Check back soon.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <main class="container">
+        <header class="header">
+            <span class="status-badge">
+                <span class="status-dot"></span>
+                Under Construction
+            </span>
+        </header>
+        
+        <div class="content">
+            <h1 class="title">Something <em>beautiful</em><br>is in the works.</h1>
+            <p class="subtitle">I'm currently redesigning my portfolio to better showcase my latest work and experiences. The new experience will be available shortly.</p>
+            
+            <div class="contact">
+                <p>In the meantime, let's connect:</p>
+                <div class="links">
+                    <a href="mailto:hello@example.com" class="link" target="_blank" rel="noopener noreferrer">Email</a>
+                    <a href="https://linkedin.com" class="link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://github.com" class="link" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; <span id="year"></span>. All rights reserved.</p>
+        </footer>
+    </main>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
