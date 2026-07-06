@@ -4,6 +4,8 @@ import { PortfolioAssistant } from "@/features/ai/portfolio-assistant";
 import { AnalyticsTracker } from "@/features/analytics/tracker";
 import { RecruiterProvider } from "@/features/recruiter/recruiter-context";
 import { RecruiterButton } from "@/features/recruiter/recruiter-button";
+import { ThemeProvider } from "@/features/theme/theme-context";
+import { ThemeSwitcher } from "@/features/theme/theme-switcher";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
@@ -19,13 +21,18 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className="font-sans" suppressHydrationWarning>
-        <RecruiterProvider>
-          <div className="noise" />
-          <AnalyticsTracker />
-          {children}
-          {isChatEnabled && <PortfolioAssistant />}
-          <RecruiterButton />
-        </RecruiterProvider>
+        <ThemeProvider>
+          <RecruiterProvider>
+            <div className="noise" />
+            <AnalyticsTracker />
+            {children}
+            {isChatEnabled && <PortfolioAssistant />}
+            <div className="fixed top-6 right-6 z-50">
+              <ThemeSwitcher />
+            </div>
+            <RecruiterButton />
+          </RecruiterProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
