@@ -14,7 +14,7 @@ const nav = [
   { href: "/admin/socials", label: "Socials", icon: Share2 }
 ];
 
-export function AdminShell({ children }: { children: React.ReactNode }) {
+export function AdminShell({ children, title, description }: { children: React.ReactNode; title?: string; description?: string }) {
   return (
     <div className="min-h-screen bg-background">
       <aside className="fixed inset-y-0 left-0 hidden w-64 border-r border-border bg-card/55 p-5 backdrop-blur lg:flex lg:flex-col">

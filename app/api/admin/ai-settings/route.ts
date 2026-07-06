@@ -1,15 +1,17 @@
-import { createClient } from '@/lib/supabase/server';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const supabase = await createClient();
+  const supabase = await createSupabaseServerClient();
+    if (!supabase) throw new Error("Supabase client not initialized");
   const { data } = await supabase.from('ai_settings').select('is_chat_enabled').eq('id', 1).single();
   return NextResponse.json({ is_chat_enabled: data?.is_chat_enabled ?? false });
 }
 
 export async function POST(req: Request) {
   try {
-    const supabase = await createClient();
+    const supabase = await createSupabaseServerClient();
+    if (!supabase) throw new Error("Supabase client not initialized");
 
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

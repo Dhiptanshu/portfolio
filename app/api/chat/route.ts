@@ -1,6 +1,6 @@
 import { google } from '@ai-sdk/google';
 import { streamText, embed } from 'ai';
-import { createClient } from '@/lib/supabase/server';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
 
 export const maxDuration = 30;
 
@@ -15,7 +15,8 @@ export async function POST(req: Request) {
       value: latestMessage,
     });
 
-    const supabase = await createClient();
+    const supabase = await createSupabaseServerClient();
+    if (!supabase) throw new Error("Supabase client not initialized");
 
     // Query the database for similar context
     const { data: documents, error } = await supabase.rpc('match_portfolio_documents', {
@@ -48,7 +49,7 @@ Context:
 ${context || 'No relevant context found.'}`;
 
     // Stream the response back
-    const result = streamText({
+    const result = await streamText({
       model: google('gemini-1.5-flash'),
       messages: [
         { role: 'system', content: systemPrompt },
@@ -56,7 +57,7 @@ ${context || 'No relevant context found.'}`;
       ],
     });
 
-    return result.toDataStreamResponse();
+    return result.toTextStreamResponse();
   } catch (error) {
     console.error('Chat API Error:', error);
     return new Response(JSON.stringify({ error: 'Failed to generate response' }), {

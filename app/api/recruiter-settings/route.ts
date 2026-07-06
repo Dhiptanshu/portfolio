@@ -1,14 +1,16 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
 
 export async function GET() {
-  const supabase = await createClient();
+  const supabase = await createSupabaseServerClient();
+    if (!supabase) throw new Error("Supabase client not initialized");
   const { data } = await supabase.from('recruiter_settings').select('estimated_reading_time, is_active').eq('id', 1).single();
   return NextResponse.json(data || { estimated_reading_time: 5, is_active: true });
 }
 
 export async function POST(req: Request) {
-  const supabase = await createClient();
+  const supabase = await createSupabaseServerClient();
+    if (!supabase) throw new Error("Supabase client not initialized");
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 

@@ -4,7 +4,7 @@ import { PortfolioAssistant } from "@/features/ai/portfolio-assistant";
 import { AnalyticsTracker } from "@/features/analytics/tracker";
 import { RecruiterProvider } from "@/features/recruiter/recruiter-context";
 import { RecruiterButton } from "@/features/recruiter/recruiter-button";
-import { createClient } from "@/lib/supabase/server";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: "Dhiptanshu | Portfolio OS",
@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const supabase = await createClient();
-  const { data: settings } = await supabase.from('ai_settings').select('is_chat_enabled').eq('id', 1).single();
+  const supabase = await createSupabaseServerClient();
+  const { data: settings } = await supabase!.from('ai_settings').select('is_chat_enabled').eq('id', 1).single();
   const isChatEnabled = settings?.is_chat_enabled ?? false;
 
   return (

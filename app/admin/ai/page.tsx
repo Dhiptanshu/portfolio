@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Bot, RefreshCw, CheckCircle2, AlertCircle, Power } from 'lucide-react';
-import { AdminShell } from '@/features/admin/admin-shell';
+import { AdminShell } from '@/components/admin-shell';
 
 export default function AIAdminPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -73,9 +73,9 @@ export default function AIAdminPage() {
               <Power className="w-5 h-5" />
               Master Power Switch
             </CardTitle>
-            <CardDescription>
+            <p className="text-sm text-muted-foreground">
               Instantly enable or completely vanish the AI Chat Assistant from the public portfolio. Use this if you need to manage API costs or perform maintenance.
-            </CardDescription>
+            </p>
           </CardHeader>
           <CardContent>
             <Button 
@@ -94,9 +94,9 @@ export default function AIAdminPage() {
               <Bot className="w-5 h-5" />
               Knowledge Base Indexing
             </CardTitle>
-            <CardDescription>
+            <p className="text-sm text-muted-foreground">
               Rebuild the vector search index used by the AI Portfolio Assistant. This process parses all your visible projects, timeline journeys, skills, and achievements, generates Gemini embeddings, and stores them in the database for semantic search.
-            </CardDescription>
+            </p>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center gap-4">

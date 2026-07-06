@@ -1,13 +1,14 @@
 import { google } from '@ai-sdk/google';
 import { embedMany } from 'ai';
-import { createClient } from '@/lib/supabase/server';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
 
 export const maxDuration = 300; // 5 minutes max duration for full index rebuild
 
 export async function POST(req: Request) {
   try {
-    const supabase = await createClient();
+    const supabase = await createSupabaseServerClient();
+    if (!supabase) throw new Error("Supabase client not initialized");
 
     // 1. Verify admin status
     const { data: { user } } = await supabase.auth.getUser();

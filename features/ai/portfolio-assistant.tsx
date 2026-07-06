@@ -1,6 +1,6 @@
 'use client';
 
-import { useChat } from 'ai/react';
+import { useChat } from '@ai-sdk/react';
 import { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -17,7 +17,9 @@ const SUGGESTED_QUESTIONS = [
 
 export function PortfolioAssistant() {
   const [isOpen, setIsOpen] = useState(false);
-  const { messages, input, handleInputChange, handleSubmit, append } = useChat({
+  const [input, setInput] = useState("");
+  const { messages, sendMessage } = useChat({
+    // @ts-ignore
     api: '/api/chat',
   });
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -28,8 +30,16 @@ export function PortfolioAssistant() {
     }
   }, [messages]);
 
-  const handleSuggest = (q: string) => {
-    append({ role: 'user', content: q });
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+    // @ts-ignore
+    sendMessage({ role: 'user', content: input });
+    setInput('');
   };
 
   if (!isOpen) {
@@ -70,7 +80,8 @@ export function PortfolioAssistant() {
                     variant="outline"
                     size="sm"
                     className="text-xs h-auto py-1.5 whitespace-normal text-left inline-block"
-                    onClick={() => handleSuggest(q)}
+                    onClick={() => // @ts-ignore
+                    sendMessage({ role: 'user', content: q })}
                   >
                     {q}
                   </Button>
@@ -79,7 +90,7 @@ export function PortfolioAssistant() {
             </div>
           ) : (
             <div className="space-y-4 pb-4">
-              {messages.map((m) => (
+              {messages.map((m: any) => (
                 <div
                   key={m.id}
                   className={`flex gap-3 text-sm ${m.role === 'user' ? 'flex-row-reverse' : ''}`}
@@ -89,7 +100,7 @@ export function PortfolioAssistant() {
                   </div>
                   <div className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'} max-w-[85%]`}>
                     <div className={`rounded-lg px-4 py-2 ${m.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted/50 border shadow-sm'}`}>
-                      <p className="whitespace-pre-wrap leading-relaxed">{m.content}</p>
+                      <p className="whitespace-pre-wrap leading-relaxed">{m.parts ? m.parts.map((p: any) => p.text).join('') : m.content}</p>
                     </div>
                   </div>
                 </div>

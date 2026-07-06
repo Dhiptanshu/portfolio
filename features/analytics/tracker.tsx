@@ -3,6 +3,26 @@
 import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 
+export function trackEvent(eventType: string, resourceId?: string, resourceName?: string, metadata?: any) {
+  if (typeof window === 'undefined') return;
+  const sessionId = sessionStorage.getItem('portfolio_session_id');
+  if (!sessionId) return;
+  
+  fetch('/api/analytics', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      action: 'event',
+      session_id: sessionId,
+      event_type: eventType,
+      path: window.location.pathname,
+      resource_id: resourceId,
+      resource_name: resourceName,
+      metadata: metadata || {}
+    }),
+  }).catch(() => {});
+}
+
 export function AnalyticsTracker() {
   const pathname = usePathname();
   const sessionIdRef = useRef<string | null>(null);
@@ -17,12 +37,13 @@ export function AnalyticsTracker() {
         const res = await fetch('/api/analytics', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'init_session', is_returning }),
+          body: JSON.stringify({ action: 'init_session', isReturning }),
         });
         const data = await res.json();
         if (data.session_id) {
           sessionIdRef.current = data.session_id;
           localStorage.setItem('portfolio_visited', 'true');
+          sessionStorage.setItem('portfolio_session_id', data.session_id);
           
           // Log page view
           fetch('/api/analytics', {
@@ -34,14 +55,29 @@ export function AnalyticsTracker() {
               event_type: 'page_view',
               path: pathname
             }),
-          });
+          }).catch(() => {});
         }
       } catch (err) {
         console.error('Analytics init failed:', err);
       }
     };
 
-    initSession();
+    if (!sessionStorage.getItem('portfolio_session_id')) {
+      initSession();
+    } else {
+      sessionIdRef.current = sessionStorage.getItem('portfolio_session_id');
+      // Log page view for existing session
+      fetch('/api/analytics', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'event',
+          session_id: sessionIdRef.current,
+          event_type: 'page_view',
+          path: pathname
+        }),
+      }).catch(() => {});
+    }
 
   }, [pathname]);
 

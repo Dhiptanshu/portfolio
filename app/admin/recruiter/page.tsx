@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { AdminShell } from '@/features/admin/admin-shell';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { AdminShell } from '@/components/admin-shell';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Briefcase, Save } from 'lucide-react';
@@ -48,9 +48,9 @@ export default function RecruiterAdminPage() {
               <Briefcase className="w-5 h-5" />
               Settings
             </CardTitle>
-            <CardDescription>
+            <p className="text-sm text-muted-foreground">
               Configure the estimated reading time for the guided tour and toggle the overall availability of the mode. Note: Featured flags for projects, skills, etc., can be toggled on their respective admin pages.
-            </CardDescription>
+            </p>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">

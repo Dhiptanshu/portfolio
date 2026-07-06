@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
 import crypto from 'crypto';
 
 function getVisitorHash(req: Request) {
@@ -12,7 +12,8 @@ function getVisitorHash(req: Request) {
 
 export async function POST(req: Request) {
   try {
-    const supabase = await createClient();
+    const supabase = await createSupabaseServerClient();
+    if (!supabase) throw new Error("Supabase client not initialized");
     const body = await req.json();
     const { action, event_type, path, resource_id, resource_name, metadata, session_id } = body;
     const visitor_hash = getVisitorHash(req);
