@@ -35,6 +35,14 @@ export function ContactForm() {
       const json = await res.json();
       
       if (!res.ok) {
+        if (typeof json.error === "object" && json.error !== null) {
+           const fieldErrors = json.error.fieldErrors;
+           if (fieldErrors) {
+             const firstKey = Object.keys(fieldErrors)[0];
+             throw new Error(fieldErrors[firstKey]?.[0] || "Validation failed");
+           }
+           throw new Error(JSON.stringify(json.error));
+        }
         throw new Error(json.error || "Failed to send message");
       }
 
