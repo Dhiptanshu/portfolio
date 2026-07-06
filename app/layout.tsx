@@ -7,6 +7,9 @@ import { RecruiterButton } from "@/features/recruiter/recruiter-button";
 import { ThemeProvider } from "@/features/theme/theme-context";
 import { ThemeSwitcher } from "@/features/theme/theme-switcher";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { initializeCmsRegistry } from "@/features/cms/registry-init";
+
+initializeCmsRegistry();
 
 export const metadata: Metadata = {
   title: "Dhiptanshu | Portfolio OS",
