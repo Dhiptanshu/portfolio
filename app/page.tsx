@@ -36,9 +36,22 @@ export default async function DynamicHomePage() {
 
   return (
     <main className="min-h-screen w-full flex flex-col">
-      {rootBlocks.map(block => (
-        <BlockRenderer key={block.id} block={block} />
-      ))}
+      {rootBlocks.length > 0 ? (
+        rootBlocks.map(block => (
+          <BlockRenderer key={block.id} block={block} />
+        ))
+      ) : (
+        <div className="flex flex-col items-center justify-center flex-1 text-center px-4">
+          <div className="w-16 h-16 border-2 border-dashed border-muted-foreground/50 rounded-lg flex items-center justify-center mb-4">
+            <span className="text-muted-foreground text-2xl">+</span>
+          </div>
+          <h2 className="text-xl font-semibold mb-2">This page is empty</h2>
+          <p className="text-muted-foreground max-w-md">
+            The "home" page exists in the database, but no content blocks have been added yet. 
+            Head over to the Admin Panel to build this page using the Block CMS.
+          </p>
+        </div>
+      )}
     </main>
   );
 }

@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { createSupabaseBrowserClient } from '@/lib/supabase/browser';
 import { CmsPage } from '@/features/cms/types';
 import { Plus, Edit, Eye, EyeOff, Layout } from 'lucide-react';
+import Link from 'next/link';
 
 export default function PagesAdmin() {
   const [pages, setPages] = useState<CmsPage[]>([]);
@@ -38,9 +39,11 @@ export default function PagesAdmin() {
             </div>
             
             <div className="flex gap-2">
-               <Button variant="outline" size="sm" className="gap-2">
-                 <Layout className="w-4 h-4" /> Builder
-               </Button>
+               <Link href={`/admin/pages/${page.id}`}>
+                 <Button variant="outline" size="sm" className="gap-2">
+                   <Layout className="w-4 h-4" /> Builder
+                 </Button>
+               </Link>
                <Button variant="ghost" size="icon">
                  <Edit className="w-4 h-4 text-muted-foreground" />
                </Button>
