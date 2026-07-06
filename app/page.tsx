@@ -1,57 +1,82 @@
-import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { BlockRenderer } from '@/features/cms/block-renderer';
-import { CmsBlock } from '@/features/cms/types';
-import { notFound } from 'next/navigation';
+import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { getJourneys, getJourneyFilters, getSkillGraph, getAchievements } from "@/lib/data";
+import { HeroSection } from "@/features/sections/hero";
+import { JourneySection } from "@/features/sections/journey";
+import { ProjectsSection } from "@/features/sections/projects";
+import { SkillsSection } from "@/features/sections/skills";
+import { AchievementsSection } from "@/features/sections/achievements";
+import { ContactSection } from "@/features/sections/contact";
+import { SiteNav } from "@/features/sections/nav";
+import { ScrollProgress } from "@/features/sections/scroll-progress";
 
-export default async function DynamicHomePage() {
+export const revalidate = 60;
+
+export default async function HomePage() {
   const supabase = await createSupabaseServerClient();
   if (!supabase) return null;
 
-  // Fetch the 'home' page
-  const { data: page } = await supabase
-    .from('pages')
-    .select('*')
-    .eq('slug', 'home')
-    .eq('is_published', true)
-    .single();
+  // Parallel data fetching
+  const [
+    journeys,
+    filters,
+    skillGraph,
+    achievementData,
+    { data: entries },
+    { data: socials },
+    { data: heroBlock },
+  ] = await Promise.all([
+    getJourneys(),
+    getJourneyFilters(),
+    getSkillGraph(),
+    getAchievements(),
+    supabase
+      .from("entries")
+      .select("*, sections(*)")
+      .eq("is_visible", true)
+      .order("display_order", { ascending: true }),
+    supabase
+      .from("social_links")
+      .select("*")
+      .eq("is_visible", true)
+      .order("display_order", { ascending: true }),
+    supabase
+      .from("blocks")
+      .select("content")
+      .eq("type", "hero")
+      .single(),
+  ]);
 
-  if (!page) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-2xl font-bold">Welcome to Portfolio OS</h1>
-        <p className="text-muted-foreground mt-2">Please create and publish a 'home' page in the CMS to view content.</p>
-      </div>
-    );
-  }
-
-  // Fetch top-level blocks for this page
-  const { data: blocks } = await supabase
-    .from('blocks')
-    .select('*')
-    .eq('page_id', page.id)
-    .is('parent_id', null)
-    .order('sort_order', { ascending: true });
-
-  const rootBlocks = (blocks as CmsBlock[]) || [];
+  const projects =
+    entries?.filter((entry: any) => entry.sections?.slug === "projects") || [];
 
   return (
-    <main className="min-h-screen w-full flex flex-col">
-      {rootBlocks.length > 0 ? (
-        rootBlocks.map(block => (
-          <BlockRenderer key={block.id} block={block} />
-        ))
-      ) : (
-        <div className="flex flex-col items-center justify-center flex-1 text-center px-4">
-          <div className="w-16 h-16 border-2 border-dashed border-muted-foreground/50 rounded-lg flex items-center justify-center mb-4">
-            <span className="text-muted-foreground text-2xl">+</span>
-          </div>
-          <h2 className="text-xl font-semibold mb-2">This page is empty</h2>
-          <p className="text-muted-foreground max-w-md">
-            The "home" page exists in the database, but no content blocks have been added yet. 
-            Head over to the Admin Panel to build this page using the Block CMS.
-          </p>
-        </div>
-      )}
-    </main>
+    <>
+      <div className="paper-grain" aria-hidden="true" />
+      <ScrollProgress />
+      <SiteNav />
+
+      <main className="bg-background text-foreground">
+        <HeroSection socials={socials || []} heroData={heroBlock?.content} />
+
+        <div className="golden-line" />
+        <JourneySection
+          journeys={journeys}
+          categories={filters.categories}
+          tags={filters.tags}
+        />
+
+        <div className="golden-line" />
+        <ProjectsSection projects={projects} />
+
+        <div className="golden-line" />
+        <SkillsSection graph={skillGraph} />
+
+        <div className="golden-line" />
+        <AchievementsSection data={achievementData} />
+
+        <div className="golden-line" />
+        <ContactSection socials={socials || []} />
+      </main>
+    </>
   );
 }

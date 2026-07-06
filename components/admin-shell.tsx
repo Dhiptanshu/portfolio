@@ -1,46 +1,55 @@
 import Link from "next/link";
-import { LayoutDashboard, Layers3, Library, Share2, Images, Network, Milestone, Trophy } from "lucide-react";
+import { LayoutDashboard, Library, Network, Milestone, Trophy, Images, Share2, Settings, Users, Inbox } from "lucide-react";
 import { AdminLogoutButton } from "@/components/admin-logout-button";
 import { cn } from "@/lib/utils";
 
 const nav = [
-  { href: "/admin", label: "Overview", icon: LayoutDashboard },
-  { href: "/admin/sections", label: "Sections", icon: Layers3 },
-  { href: "/admin/content", label: "Content", icon: Library },
-  { href: "/admin/skills", label: "Skills", icon: Network },
+  { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/admin/hero", label: "Hero & Profile", icon: Users },
   { href: "/admin/journey", label: "Journey", icon: Milestone },
+  { href: "/admin/content", label: "Projects", icon: Library },
+  { href: "/admin/skills", label: "Skills", icon: Network },
   { href: "/admin/achievements", label: "Achievements", icon: Trophy },
+  { href: "/admin/messages", label: "Messages", icon: Inbox },
   { href: "/admin/media", label: "Media", icon: Images },
-  { href: "/admin/socials", label: "Socials", icon: Share2 }
+  { href: "/admin/socials", label: "Social Links", icon: Share2 },
 ];
 
-export function AdminShell({ children, title, description }: { children: React.ReactNode; title?: string; description?: string }) {
+export function AdminShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-background">
-      <aside className="fixed inset-y-0 left-0 hidden w-64 border-r border-border bg-card/55 p-5 backdrop-blur lg:flex lg:flex-col">
+      <aside className="fixed inset-y-0 left-0 hidden w-56 border-r border-border bg-card/50 p-5 backdrop-blur lg:flex lg:flex-col">
         <div>
-          <Link href="/admin" className="font-serif text-xl text-primary">Dhiptanshu.</Link>
-          <nav className="mt-10 grid gap-1">
+          <Link href="/admin" className="font-serif text-lg text-primary">Dhiptanshu.</Link>
+          <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Admin Panel</p>
+          <nav className="mt-8 grid gap-0.5" aria-label="Admin navigation">
             {nav.map((item) => (
-              <Link key={item.href} href={item.href} className={cn("flex items-center gap-3 rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground")}>
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "flex items-center gap-3 rounded-sm px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                )}
+              >
                 <item.icon className="h-4 w-4" />
                 {item.label}
               </Link>
             ))}
           </nav>
         </div>
-        <div className="mt-auto">
+        <div className="mt-auto space-y-3">
+          <Link href="/" target="_blank" className="block text-xs text-muted-foreground hover:text-primary transition-colors">
+            ← View Portfolio
+          </Link>
           <AdminLogoutButton />
         </div>
       </aside>
-      <main className="lg:pl-64">
-        <header className="flex items-center justify-between border-b border-border bg-card/55 px-4 py-3 backdrop-blur lg:hidden">
+      <main className="lg:pl-56">
+        <header className="flex items-center justify-between border-b border-border bg-card/50 px-4 py-3 backdrop-blur lg:hidden">
           <Link href="/admin" className="font-serif text-lg text-primary">Dhiptanshu.</Link>
-          <div className="w-32">
-            <AdminLogoutButton />
-          </div>
+          <AdminLogoutButton />
         </header>
-        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">{children}</div>
+        <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">{children}</div>
       </main>
     </div>
   );

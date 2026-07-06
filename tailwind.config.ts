@@ -43,9 +43,28 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)"
       },
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui"],
-        serif: ["Playfair Display", "Georgia", "serif"]
-      }
+        sans: ["var(--font-sans)", "Inter", "ui-sans-serif", "system-ui"],
+        serif: ["var(--font-serif)", "Cormorant Garamond", "Georgia", "serif"]
+      },
+      fontSize: {
+        "display-lg": ["clamp(3rem, 7vw, 6rem)", { lineHeight: "1.08", letterSpacing: "-0.02em" }],
+        "display": ["clamp(2.5rem, 5vw, 4.5rem)", { lineHeight: "1.12", letterSpacing: "-0.015em" }],
+        "display-sm": ["clamp(2rem, 4vw, 3rem)", { lineHeight: "1.15", letterSpacing: "-0.01em" }]
+      },
+      animation: {
+        "fade-in": "fadeIn 0.6s ease-out forwards",
+        "slide-up": "slideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        slideUp: {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+      },
     }
   },
   plugins: [animate]

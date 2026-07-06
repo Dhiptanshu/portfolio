@@ -5,6 +5,7 @@ import { DndContext, type DragEndEvent } from "@dnd-kit/core";
 import { SortableContext, arrayMove, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Copy, Eye, EyeOff, GripVertical, Plus, Save, Trash2, Upload } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -54,6 +55,7 @@ export function JourneyAdmin({ initialJourneys, skills }: { initialJourneys: Jou
     const journey = (await response.json()) as Journey;
     setJourneys([...journeys, journey]);
     setSelectedId(journey.id);
+    toast.success("Journey entry created");
   }
 
   async function updateJourney(id: string, patch: Partial<Journey>) {
@@ -61,6 +63,7 @@ export function JourneyAdmin({ initialJourneys, skills }: { initialJourneys: Jou
     if (!response.ok) return;
     const updated = (await response.json()) as Journey;
     setJourneys(journeys.map((journey) => (journey.id === id ? updated : journey)));
+    toast.success("Journey updated successfully");
   }
 
   async function deleteJourney(id: string) {
@@ -69,6 +72,7 @@ export function JourneyAdmin({ initialJourneys, skills }: { initialJourneys: Jou
     const next = journeys.filter((journey) => journey.id !== id);
     setJourneys(next);
     setSelectedId(next[0]?.id ?? "");
+    toast.success("Journey deleted");
   }
 
   async function duplicateJourney(journey: Journey) {
@@ -94,6 +98,7 @@ export function JourneyAdmin({ initialJourneys, skills }: { initialJourneys: Jou
     const next = arrayMove(journeys, oldIndex, newIndex);
     setJourneys(next);
     await fetch("/api/journeys", { method: "PATCH", body: JSON.stringify({ ids: next.map((journey) => journey.id) }) });
+    toast.success("Reordered successfully");
   }
 
   return (
@@ -159,9 +164,11 @@ function JourneyEditor({ journey, skills, onUpdate, onDelete, onDuplicate, onLoc
   const [draft, setDraft] = useState(journey);
   const [tag, setTag] = useState("");
   const [mediaUrl, setMediaUrl] = useState("");
+  const [techStackStr, setTechStackStr] = useState(journey.tech_stack.join(", "));
 
   useEffect(() => {
     setDraft(journey);
+    setTechStackStr(journey.tech_stack.join(", "));
   }, [journey]);
 
   function patch(value: Partial<Journey>) {
@@ -169,6 +176,26 @@ function JourneyEditor({ journey, skills, onUpdate, onDelete, onDuplicate, onLoc
   }
 
   async function save() {
+    // Auto-create missing skills from tech_stack
+    for (const tech of draft.tech_stack) {
+      const exists = skills.some(s => s.name.toLowerCase() === tech.toLowerCase());
+      if (!exists) {
+        await fetch("/api/skills", {
+          method: "POST",
+          body: JSON.stringify({
+             name: tech,
+             slug: slugify(tech),
+             level: 1,
+             xp: 100,
+             color_theme: "primary",
+             node_x: 0,
+             node_y: 0,
+             is_visible: true
+          })
+        }).catch(() => {});
+      }
+    }
+
     await onUpdate(draft.id, {
       title: draft.title,
       slug: draft.slug,
@@ -190,6 +217,8 @@ function JourneyEditor({ journey, skills, onUpdate, onDelete, onDuplicate, onLoc
       is_visible: draft.is_visible,
       is_featured: draft.is_featured
     });
+    
+    toast.success("Journey entry saved");
   }
 
   async function upload(file: File, target: "cover" | "gallery" | "document") {
@@ -261,7 +290,7 @@ function JourneyEditor({ journey, skills, onUpdate, onDelete, onDuplicate, onLoc
         <Input type="date" value={draft.start_date} onChange={(event) => patch({ start_date: event.target.value })} />
         <Input type="date" value={draft.end_date ?? ""} onChange={(event) => patch({ end_date: event.target.value || null })} />
         <Input value={draft.location ?? ""} placeholder="Location" onChange={(event) => patch({ location: event.target.value })} />
-        <Input value={draft.tech_stack.join(", ")} placeholder="Tech stack, comma separated" onChange={(event) => patch({ tech_stack: splitList(event.target.value) })} />
+        <Input value={techStackStr} placeholder="Tech stack, comma separated" onChange={(event) => setTechStackStr(event.target.value)} onBlur={() => patch({ tech_stack: splitList(techStackStr) })} />
         <Input value={draft.github_url ?? ""} placeholder="GitHub URL" onChange={(event) => patch({ github_url: event.target.value })} />
         <Input value={draft.demo_url ?? ""} placeholder="Demo URL" onChange={(event) => patch({ demo_url: event.target.value })} />
         <Textarea className="md:col-span-2" value={draft.description ?? ""} placeholder="Timeline summary" onChange={(event) => patch({ description: event.target.value })} />

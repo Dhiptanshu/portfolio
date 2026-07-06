@@ -1,0 +1,1729 @@
+# MASTER PORTFOLIO POPULATION AGENT
+
+You are the Portfolio Population Agent for my Portfolio OS.
+
+The application is already fully developed.
+
+DO NOT modify the architecture.
+
+DO NOT modify database schema.
+
+DO NOT rebuild components.
+
+Your only responsibility is to populate the Portfolio OS with all available data while preserving relationships between every entity.
+
+Everything must become editable through the CMS after import.
+
+---
+
+# Primary Goal
+
+Completely populate every module of the Portfolio OS.
+
+Nothing should remain empty.
+
+Every project, achievement, certificate, internship, skill, social profile, research paper, journey event, and image should be imported and interconnected.
+
+The portfolio should immediately feel complete.
+
+---
+
+# Sources of Truth
+
+Use ALL available information.
+
+This includes:
+
+* Resume
+* Placement Brochure
+* GitHub repositories
+* LinkedIn profile
+* LinkedIn posts
+* Internship details
+* Research paper
+* Certificates
+* Hackathon participation
+* Awards
+* Competition results
+* Uploaded images
+* Uploaded PDFs
+* Existing project descriptions
+* Existing README files
+* Existing portfolio content
+* Media uploaded into the project
+* Any manually supplied information
+
+Merge duplicate information.
+
+Never create duplicate records.
+
+Prefer the most detailed source.
+
+---
+
+# Populate Every CMS Module
+
+Populate ALL of the following.
+
+## About Me
+
+Professional biography.
+
+Long biography.
+
+Short biography.
+
+Career objective.
+
+Education.
+
+Languages.
+
+Interests.
+
+Current status.
+
+Resume download.
+
+Profile image.
+
+Background image.
+
+Hero statistics.
+
+Typing animation text.
+
+Personal quote.
+
+---
+
+## Journey Engine
+
+Generate complete journey timeline.
+
+Every major milestone becomes one Journey Entry.
+
+Examples include:
+
+School
+
+University
+
+Hackathons
+
+Competitions
+
+Internships
+
+Research
+
+Certifications
+
+Incubation
+
+Startup Journey
+
+Speaking Events
+
+Organizing Events
+
+Publications
+
+Projects
+
+Awards
+
+Every Journey Entry should contain:
+
+Title
+
+Subtitle
+
+Category
+
+Date
+
+End Date
+
+Location
+
+Description
+
+Long Story
+
+Highlights
+
+Technologies
+
+Skills Learned
+
+Achievements
+
+Related Projects
+
+Related Skills
+
+Related Certificates
+
+Media Gallery
+
+Videos
+
+Documents
+
+Cover Image
+
+Tags
+
+Visibility
+
+Featured flag
+
+Chronological ordering
+
+---
+
+## Projects
+
+Analyze every GitHub repository.
+
+Ignore:
+
+Private repositories
+
+Backup repositories
+
+Experimental repositories without meaningful implementation
+
+Merge duplicate repositories.
+
+Each project should contain:
+
+Title
+
+Short description
+
+Long description
+
+Project Story
+
+Problem Statement
+
+Solution
+
+Architecture
+
+Features
+
+Technologies
+
+GitHub URL
+
+Demo URL
+
+Live URL
+
+Timeline
+
+Difficulty
+
+Project Status
+
+Related Skills
+
+Related Journey
+
+Related Achievements
+
+Related Internship
+
+Related Research
+
+Media Gallery
+
+Screenshots
+
+Videos
+
+Architecture diagrams
+
+Feature images
+
+Cover Image
+
+Featured Image
+
+Thumbnail
+
+Awards
+
+Visibility
+
+Featured
+
+---
+
+## GitHub Intelligence
+
+Deeply inspect every repository.
+
+Read:
+
+README
+
+package.json
+
+requirements.txt
+
+pubspec.yaml
+
+Dockerfile
+
+GitHub Actions
+
+build.gradle
+
+pom.xml
+
+Source code
+
+Infer technologies.
+
+Infer frameworks.
+
+Infer architecture.
+
+Infer cloud providers.
+
+Infer deployment.
+
+Infer authentication.
+
+Infer APIs.
+
+Infer testing.
+
+Infer databases.
+
+Infer AI frameworks.
+
+Infer DevOps tooling.
+
+Automatically update project technologies.
+
+Automatically update related skills.
+
+Automatically calculate project complexity.
+
+---
+
+## Skill Tree
+
+Generate the entire graph.
+
+Merge duplicate skills.
+
+Automatically create categories.
+
+Automatically create dependencies.
+
+Automatically calculate XP.
+
+Automatically calculate level.
+
+Automatically create parent-child relationships.
+
+Automatically generate:
+
+Description
+
+Related Skills
+
+Evidence
+
+Projects
+
+Hackathons
+
+Research
+
+Internship
+
+Certificates
+
+Confidence Score
+
+Featured Skills
+
+Icons
+
+Node positions
+
+Connections
+
+Unlock relationships
+
+Progression graph
+
+---
+
+## Achievement System
+
+Create achievement records.
+
+Examples include:
+
+Smart India Hackathon Finalist
+
+Research Paper Accepted
+
+Incubation Selection
+
+SSIP Grant
+
+CyberShadez Organizer
+
+Bug Bounty Platform
+
+AWS Academy Graduate
+
+NPTEL
+
+Power BI
+
+AU Ingenium
+
+Internal Hackathon Awards
+
+Every achievement contains:
+
+Title
+
+Description
+
+Story
+
+Category
+
+Rarity
+
+XP Reward
+
+Unlock Date
+
+Related Projects
+
+Related Skills
+
+Related Journey
+
+Related Certificates
+
+Media
+
+Icon
+
+Badge
+
+Visibility
+
+Featured
+
+---
+
+## Internship
+
+Generate internship experience.
+
+Include:
+
+Company
+
+Role
+
+Duration
+
+Mentor
+
+Responsibilities
+
+Major Contributions
+
+Technologies
+
+Projects
+
+Gallery
+
+Deployment screenshots
+
+Learning outcomes
+
+Skills acquired
+
+Achievements
+
+Media
+
+---
+
+## Research
+
+Populate research module.
+
+Include:
+
+Title
+
+Conference
+
+Publisher
+
+Status
+
+Abstract
+
+Keywords
+
+Presentation date
+
+Research area
+
+Paper
+
+Presentation
+
+Related Projects
+
+Related Skills
+
+Media
+
+---
+
+## Certifications
+
+Import every certification.
+
+Include:
+
+Title
+
+Organization
+
+Issue Date
+
+Credential
+
+Credential URL
+
+Certificate Image
+
+Skills
+
+Category
+
+Verification
+
+Related Journey
+
+Related Achievements
+
+---
+
+## Education
+
+University
+
+Degree
+
+CGPA
+
+Timeline
+
+Relevant coursework
+
+Major achievements
+
+Projects completed
+
+Research
+
+Hackathons
+
+---
+
+## Competitions
+
+Generate competition entries.
+
+Include:
+
+Organizer
+
+Result
+
+Rank
+
+Problem Statement
+
+Technologies
+
+Gallery
+
+Certificates
+
+Journey links
+
+Projects
+
+---
+
+## Social Links
+
+Automatically populate:
+
+GitHub
+
+LinkedIn
+
+Portfolio
+
+Email
+
+Phone
+
+Future social platforms
+
+Support hide/show.
+
+Support ordering.
+
+Support logos.
+
+---
+
+## Contact
+
+Generate contact section.
+
+Professional contact card.
+
+Call-to-action.
+
+Resume download.
+
+Availability.
+
+Timezone.
+
+---
+
+## Hero Section
+
+Populate:
+
+Name
+
+Headline
+
+Rotating Titles
+
+Statistics
+
+Buttons
+
+Background
+
+Profile Image
+
+Hero Illustration
+
+Resume
+
+Featured Projects
+
+Featured Skills
+
+---
+
+# Media Processing
+
+This is extremely important.
+
+Collect every image from every available source.
+
+Examples:
+
+Profile photos
+
+Passport photo
+
+Hackathon photos
+
+Internship screenshots
+
+Certificate scans
+
+LinkedIn images
+
+Research paper figures
+
+Project screenshots
+
+Application screenshots
+
+Architecture diagrams
+
+Presentation images
+
+Startup event photographs
+
+Competition photographs
+
+Publication screenshots
+
+Repository assets
+
+Organize them into the Media Library.
+
+Avoid duplicates.
+
+Generate metadata.
+
+Generate alt text.
+
+Generate captions.
+
+Automatically assign media to:
+
+Projects
+
+Journey
+
+Achievements
+
+Certificates
+
+Internship
+
+Research
+
+Hero
+
+About
+
+Timeline
+
+Skill evidence
+
+If multiple images belong to one event, automatically generate galleries.
+
+Use cover images where appropriate.
+
+Generate thumbnails.
+
+Optimize media.
+
+---
+
+# AI Enhancement
+
+Improve descriptions.
+
+Improve project summaries.
+
+Improve biographies.
+
+Improve achievement descriptions.
+
+Improve readability.
+
+Do NOT invent facts.
+
+Only enhance wording.
+
+---
+
+# Relationships
+
+Every entity must be interconnected.
+
+Projects ↔ Skills
+
+Projects ↔ Journey
+
+Journey ↔ Achievements
+
+Achievements ↔ Skills
+
+Certificates ↔ Skills
+
+Research ↔ Projects
+
+Research ↔ Skills
+
+Internship ↔ Skills
+
+Internship ↔ Projects
+
+Media ↔ Everything
+
+Everything should feel like one connected knowledge graph.
+
+---
+
+# Featured Content
+
+Automatically determine:
+
+Featured Project
+
+Featured Skill
+
+Featured Achievement
+
+Featured Journey
+
+Featured Research
+
+Featured Certificate
+
+Featured Internship
+
+Use technical complexity, impact, recognition, and real-world deployment as ranking signals.
+
+---
+
+# Recruiter Mode
+
+Populate Recruiter Mode automatically.
+
+Select:
+
+Top 5 projects.
+
+Top skills.
+
+Most important achievements.
+
+Most important journey events.
+
+Research.
+
+Internship.
+
+Education.
+
+Create an optimized recruiter flow.
+
+---
+
+# SEO
+
+Generate:
+
+Titles
+
+Descriptions
+
+Open Graph images
+
+Structured data
+
+Keywords
+
+Social preview images
+
+---
+
+# Analytics Metadata
+
+Generate searchable tags.
+
+Categories.
+
+Technology indexes.
+
+Timeline indexes.
+
+Filtering metadata.
+
+Search keywords.
+
+---
+
+# Final Validation
+
+Verify:
+
+No duplicate skills.
+
+No duplicate projects.
+
+No broken relationships.
+
+No orphan media.
+
+No empty pages.
+
+No missing cover images.
+
+No missing thumbnails.
+
+No missing galleries.
+
+No missing technology tags.
+
+No missing GitHub links.
+
+No missing certificates.
+
+No missing journey entries.
+
+Everything must be editable through the CMS.
+
+Nothing should remain hardcoded.
+
+The Portfolio OS should launch fully populated and production-ready immediately after the import completes.
+
+
+Info dump:
+Placement Brochure Data Collection (2023 - 2027 Batch) Faculty of Engineering & Technology Department of Computer Science & Engineering Placement Brochure Information Collection Kindly fill all the information carefully. The submitted information will be used for the official Placement Brochure. 202302626010036@glsu.edu.in Switch account Draft saved The name, email, and photo associated with your Google account will be recorded when you upload files and submit this form * Indicates required question Email * dhiptanshu@gmail.com SECTION 1 : PERSONAL INFORMATION 1. Full Name (AS PER LAST MARKSHEET NAME) * Dhiptanshu Malik 2. Enrollment Number * 202302626010036 3. Mobile Number (WhatsApp Number) * 9601335746 4. Official Email ID * dhiptanshu@gmail.com 5. LinkedIn Profile URL * https://www.linkedin.com/in/dhiptanshu 6. GitHub Profile URL * https://github.com/Dhiptanshu 7. Portfolio / Personal Website https://dhiptanshu.vercel.app/ SECTION 2 : CAREER OBJECTIVE 8. Career Objective (50-100 Words) * Write a short professional summary highlighting your career goals and strengths. A motivated Computer Science and Engineering student with hands-on experience in full-stack and mobile application development, cloud technologies, and AI-driven solutions. Passionate about building scalable software, solving real-world problems, and continuously learning emerging technologies. Experienced in hackathons, research, and collaborative development, with strong problem-solving, analytical, and teamwork skills. Seeking opportunities to contribute to innovative engineering teams while growing as a software engineer and delivering impactful technology solutions. SECTION 3 : TECHNICAL SKILLS Programming Languages * Example: C, C++, Java, Python Python, Java, C++, C, Dart, Perl, Bash Web Technologies * Example: HTML, CSS, JavaScript, React, Angular, NodeJS HTML, JavaScript, Typescript, CSS, React, NodeJS, Next.JS Database * Example: MySQL, MongoDB, Oracle, PostgreSQL MySQL, PostgreSQL, Supabase, MongoDB, Firebase, SQLite Cloud & DevOps Example: AWS, Azure, Docker, Kubernetes AWS, Google Cloud, Oracle Cloud, Docker, Kubernetes, Jenkins Tools * Example: Git, VS Code, Eclipse, Android Studio, Postman Git, VS Code, Android Studio, Flutter SDK, XCode, Eclipse, Cursor, Antigravity, Codex, Claude Code, Postman, Terminus SECTION 4 : AREAS OF INTEREST Select your Areas of Interest * Software Development Full Stack Development Frontend Development Backend Development Mobile App Development Artificial Intelligence Machine Learning Data Science Cyber Security Cloud Computing DevOps Networking Embedded Systems UI/UX Testing Business Analytics Blockchain IoT AR/VR Game Development Robotics System Administration Site Reliability Engineering (SRE) Database Administration Digital Forensics Computer Vision Natural Language Processing (NLP) Generative AI Big Data Analytics Business Intelligence Other SECTION 5 : INTERNSHIP DETAILS Company Name Hellobooks.ai - Meru Technosoft Pvt. Ltd. Duration 30 Days - 9th June 2026 to 9th July 2026 Designation Mobile App Developer Intern Domain Mobile App Development Technologies Used Flutter, React Native, Java, Jenkins, Terminus, Firebase, SQLite, Git, Android Studio, VS Code, XCode, Claude Code, Claude Design, Google Play Console, App Store Connect Work Description Developed and maintained Android and iOS applications using Flutter and React Native. Designed and implemented user interfaces, integrated REST APIs and AI-powered features such as in-app chat and AI calling, performed testing and bug fixing, and contributed to production deployments on the Google Play Store and Apple App Store. Collaborated using Git, Jenkins, Firebase, and modern development tools to build reliable, production-ready mobile applications. Mentor Name Bhavya Vishnani - Mobile App Developer SECTION 6 : CERTIFICATIONS List your Certifications Mention Certification Name | Organization | Year Basic Electronics | Birla Institute of Technology and Science, Pilani (Coursera) | 2026, AWS Academy Graduate - Cloud Foundations - Training Badge | AWS Academy (Amazon Web Services) | 2026, Blockchain Technology | Reliance Foundation | 2025, Create a Dashboard with Power BI | Microsoft (via Koenig Solutions Pvt. Ltd.) | 2025, Green Skills and Artificial Intelligence | Edunet Foundation | 2025, Fundamentals of Java Programming | Board Infinity (Coursera) | 2024, Recommender Systems | NPTEL | 2024 SECTION 7 : TECHNICAL COMPETITIONS Technical Competitions Hackathons, SIH, Coding Competitions, Kaggle, etc. SIH 2024 Software Edition - Grand Finale, SIH 2025 Software Edition - Grand Finale, GLS Internal Hackathon 2024 - 2nd Runner Up, GLS Internal Hackathon 2025 - Top Team (Certificate of Appreciation), AU Ingenium 2026 - Top 10 SECTION 8 : RESEARCH & PUBLICATIONS Research Papers Paper, titled 'Machine Learning-Based Adaptive Digital Twin for Real-Time Threat Detection in Cloud Systems' - Accepted for presentation/publication at International Conference on Converging Intelligence 2026, scheduled to be held from 10/8/2026 to 10/10/2026 at Gandhinagar, India, under the track Cybersecurity, Privacy, and Trusted Systems via Microsoft CMT for IEEE. Patents Book Chapters IEEE Publications SECTION 9 : ACHIEVEMENTS Achievements Academic, Sports, Cultural, Leadership, Awards, Scholarships, etc. Hosted Bug Bounty workshop and competition for GLS FET's tech fest CyberShadez 2026, made a gamified Bug Bounty platform hosted on Oracle Cloud (bit.ly/glsBB) for the same with 150 real time players; selected for Incubation and SSIP Grant at PIERC's Cohort 9 Pre-Incubation Program, presented the idea at GLS Nexus Startup Fest; received Certificate of Appreciation by GLS University for representing the institute at Smart India Hackathon Software Edition's Grand Finale two consecutive times. Passport Size Photograph ( proper photo with Good Quality, White Shirt, no background, Max 1MB size) * Upload 1 supported file: image. Max 1 MB. Image PassportImg_Dhiptanshu.jpeg SECTION 10 : DECLARATION Declaration * I hereby declare that the information provided by me is true and correct to the best of my knowledge. I understand that this information will be used for the official Placement Brochure. Git (Ignore private and ones without proper description) glsBB_CTF_Platform Public The GLS Bug Bounty Platform is a secure, enterprise-grade Capture-The-Flag (CTF) environment designed for hosting internal security challenges, hackathons, and training events. Built on a lightweig… sqlite flask-application bug-bounty capture-the-flag oracle-cloud ctf-platform Python Updated on May 28 shecan-portal Public JavaScript Updated on May 27 AI-Spending-Auditor Public AI Spend Audit is a lightweight web application that helps startups and engineering teams evaluate whether they are overspending on AI tooling such as Cursor, ChatGPT, Claude, Copilot, Gemini, and … TypeScript Updated on May 27 MyOrders-Android Public MyOrdersApp is a Kotlin-based native Android application that implements a production quality logistics and order management interface. The project is designed to accurately reflect the visual aest… Kotlin Updated on May 23 LinkedJobAutomation Private LinkedJobAutomation is an automated Node.js and Playwright script designed to search LinkedIn for recent job posts containing specific keywords, extract recruiter emails, and use the Gmail API to s… JavaScript Updated on May 22 Scalable-REST-API-with-Authentication-Role-Based-Access Public Full-stack task management system with JWT authentication, role-based access control, and a clean React frontend. JavaScript Updated on May 18 DigiTwin_Secure Public DigiTwin Secure is a proactive, artificial intelligence driven cybersecurity framework engineered to detect and mitigate complex, covert cyber threats in real time. HTML Updated on Apr 17 CheckMaster Public CheckMaster is a cross-platform inventory and task management application built with Flutter. It is designed to help users track items through their lifecycle, from initial availability to active u… JavaScript Updated on Apr 11 OpenDK-AppRecommenderSystem Public OpenDK is a Free and Open Source (FOSS) application discovery engine and recommender system designed to solve the choice overload problem in mobile application stores. JavaScript Updated on Apr 4 Sportify---Ecommerce-Platform-for-Sports-Goods Public PHP Updated on Jan 22 AU_backup Public HTML Updated on Jan 22 JavaChipS Public Deployed on AWS - http://13.200.201.169/ Data-Driven-Scalable-Urban-System---AU-Ingenious-7.0 HTML Updated on Jan 18 VillageCraft Public VillageCraft is a web-based 3D city-building simulation game that integrates real-world Geographic Information System (GIS) data to generate immersive environments. Users can plan, build, and manag… JavaScript Updated on Jan 5 CO2DigitalTwin Public A 3D interactive dashboard for monitoring and simulating CO2 levels across India. This application leverages CesiumJS for 3D geospatial visualization, providing real time and baseline data analysis… Python Updated on Jan 2 BiomassAI Public Biomass Verification AI is a robust Progressive Web Application (PWA) designed to authenticate biomass imagery for environmental auditing and monitoring. CSS Updated on Dec 30, 2025 
+
+View Dhiptanshu Malik’s graphic link
+Dhiptanshu Malik
+• You
+SIH ’24, 25 Finalist | Senior - Faculty of Engineering and Technology, GLS University • Computer Science & Engineering
+2mo •
+
+I am happy to share that I have completed the Amazon Web Services (AWS) AWS Academy Cloud Foundations [157589] course!!!
+
+Understanding cloud infrastructure is necessary today. Through this interactive course, I explored the core of Amazon Web Services from a fundamental level with practical exposure through activities. These activities allowed me to explore the architecture, security, networking, and compute services of the AWS Cloud.
+
+I explored key concepts like the AWS Shared Responsibility Model, Identity and Access Management (IAM) for securing accounts, virtual instances with EC2, and various storage options like Amazon S3 and Elastic Block Store (EBS). I also learned about different database services, including Amazon RDS and DynamoDB, and how to build reliable systems using the AWS Well-Architected Framework.
+
+Most importantly, I got the necessary practical exposure through interactive AWS labs where I experienced these services hands-on. For example, I built my own Virtual Private Cloud (VPC) and launched a web server inside it. I created and configured Amazon EC2 instances, attached EBS volumes for storage, and built a database server. I also gained experience in scaling and load balancing my architecture, deploying web applications using AWS Elastic Beanstalk, and exploring serverless computing with AWS Lambda.
+This hands-on experience has given me a strong foundation in cloud computing. This is just a start, as I am planning to go deeper into cloud deployment and architecture.
+
+I am thankful to the Faculty of Engineering & Technology, GLS University, for tying up with AWS Academy and providing this learning opportunity. I am excited to share the badge I earned along with this milestone!
+Your document has finished loading
+likelove
+44
+Aarjav Sheth and 43 others
+4 comments
+
+Like
+
+Comment
+
+Repost
+
+Send
+703 impressions
+View analytics
+Feed post number 2
+View Dhiptanshu Malik’s graphic link
+Dhiptanshu Malik
+• You
+SIH ’24, 25 Finalist | Senior - Faculty of Engineering and Technology, GLS University • Computer Science & Engineering
+3mo •
+
+Our idea is officially validated. We have been offered incubation and have been approved for a grant!
+
+The past few weeks at the PIERC - Parul University Cohort 9 Startup Pre-Incubation Program have been a rigorous test of execution. Alongside my incredible teammates Kavya Joshi, Amulya Anamdasu, and Khush Purohit, we moved from basic customer discovery to mapping complex financial models, legal structures, and Go-to-Market (GTM) strategies.
+
+Achieving this milestone on the Hindu New Year makes it even more special. Standing before the Chhatrapati Shivaji Maharaj statue on campus today served as a powerful reminder of his courage, vision, and fearless leadership. These are the exact qualities every founder needs to build a legacy that truly lasts.
+
+We did not reach this point alone, and I want to structure my thanks to the two pillars that made this possible.
+
+First, to our home base. Our deepest gratitude goes to the GLS University for constant support. We also owe a huge thanks to our Dean Rakesh Vanzara sir, Dr. Harshal Arolkar sir, Dr. Madhuri Chopade ma'am, Shivangi Gandhi ma'am, and the entire Faculty of Engineering and Technology GLS University, for being our unwavering support system.
+
+Second, to our hosts. We are incredibly thankful to Parul University and the PIERC - Parul University ecosystem for providing the platform, the mentorship, and the grant. A sincere thank you to the leadership at Parul University, Vadodara, specifically Dr. Devanshu Patel, Dr Parul Patel, and Dr Geetika Madan Patel, for actively empowering student founders to turn concepts into reality.
+
+To the mentors who shaped our mindset over this cohort, your guidance was invaluable. Thank you to Jay Sudani, Ajay Barot, Dr. Prashant Khanna (Ph.D), Sonal Sudani, HARDIK KHARVA, ANUP CHAUDHARI, ARUN ANANTHANARAYAN, Hutesh Baviskar, Bhavya Patel, Shlok Solanki, Prachi Lad, Durva Thakor, and Jasser Ahmed.
+
+A special note of thanks to Jigar Joshi for his constant backing and Mishra Om for the incredible insights that truly made a difference.
+
+hashtag#SSIP hashtag#GLSUniversity hashtag#ParulUniversity hashtag#VadodaraStartups hashtag#PIERC hashtag#Cohort9 hashtag#StartupGrant hashtag#Incubation hashtag#Entrepreneurship hashtag#BuildInPublic hashtag#TechStartups
+…more
+
+No alternative text description for this image
+
+No alternative text description for this image
+
+No alternative text description for this image
+Activate to view larger image,
+likelove
+187
+Shaurya Bhatt and 186 others
+20 comments
+1 repost
+
+Like
+
+Comment
+
+Repost
+
+Send
+3,422 impressions
+View analytics
+Feed post number 3
+View Dhiptanshu Malik’s graphic link
+Dhiptanshu Malik
+• You
+SIH ’24, 25 Finalist | Senior - Faculty of Engineering and Technology, GLS University • Computer Science & Engineering
+3mo •
+
+I am excited to share that we have officially wrapped up our journey with the Cohort 9 Startup Pre-Incubation Program at PIERC - Parul University. It has been an intensive and transformative experience that provided real-world insights into building and scaling a startup.
+
+Towards the end of the program, we had an insightful session on creating a valuable Pitch Deck by Ajay Barot, which helped us a lot during our final pitch on Thursday. We had a highly valuable session with CA Rachit Anjaria where we explored the mechanics of maintaining financial sheets, cash flow tracking, budgeting essentials, and understanding profit and loss. This was followed by a masterclass on Startup Resilience and Responsible Entrepreneurship by Lt. Gen. A. Arun (Retd). He shared powerful lessons on navigating failures, managing business risks, maintaining ethical practices, and building true founder resilience.
+
+Throughout this cohort, we gained absolute clarity on what it takes to build a startup from the ground up. The program covered the complete lifecycle, from Design Thinking, market sizing, and Go To Market strategies to the hard realities of Unit Economics, Cap Tables, and Pitching.
+
+We owe a massive thank you to Parul University and the entire PIERC - Parul University ecosystem for creating such a strong platform for young founders. We are also incredibly grateful to the Faculty of Engineering and Technology GLS University and GLS University for their continuous support.
+
+Special gratitude goes to all the mentors and speakers who guided us throughout this journey, including Jay Sudani, Dr. Prashant Khanna (Ph.D), Sonal Sudani, HARDIK KHARVA, ANUP CHAUDHARI, Hutesh Baviskar, Bhavya Patel, Shlok Solanki, and Ajay Barot.
+
+We also want to deeply thank Mishra Om (Founder EnviroWealth Services Pvt Ltd) for his valuable insights which helped us tremendously. And a very special thank you goes to the farmers who welcomed us into their fields during our customer discovery phase. To Navneetbhai Patel, Pujabhai Rajput, Snehal Bachubhai Patel, and Harshad Jadav, your ground level realities and early encouragement gave our project its true purpose.
+
+Finally, a big thank you to my friend Kavya Joshi. Going through this journey together has given us the clarity and confidence we need as we continue building.
+
+I am excited to share my certificate of completion today. This is not just a certificate. It is the launchpad for our next major milestone.
+
+hashtag#PIERC hashtag#ParulUniversity hashtag#Incubation hashtag#Entrepreneurship hashtag#StartupIndia hashtag#Founders hashtag#Cohort9 hashtag#GreenTech hashtag#FinanceForStartups hashtag#GLSUniversity
+…more
+
+No alternative text description for this image
+
+No alternative text description for this image
+
+No alternative text description for this image
+
+No alternative text description for this image
+Activate to view larger image,
+likelovecelebrate
+84
+Vedant Makwana and 83 others
+8 comments
+
+Like
+
+Comment
+
+Repost
+
+Send
+1,129 impressions
+View analytics
+Feed post number 4
+View Dhiptanshu Malik’s graphic link
+Dhiptanshu Malik
+• You
+SIH ’24, 25 Finalist | Senior - Faculty of Engineering and Technology, GLS University • Computer Science & Engineering
+3mo •
+
+A great vision gets a startup off the ground, but a solid legal foundation and airtight financials keep it alive.
+
+For Day 8 of the PIERC - Parul University Cohort 9 Startup Pre-Incubation Program, my friend Kavya Joshi and I visited the Vadodara Startup Studio, PIERC. Established by PIERC - Parul University in 2021, this space offers resources and mentorship for aspiring entrepreneurs. Representing the Faculty of Engineering and Technology GLS University, GLS University here felt like stepping into the operational heart of the startup ecosystem.
+
+We started with Legal Structures and Compliance led by CS Prachi Lad. She emphasized that early compliance prevents future legal messes. We explored Sole Proprietorships, Partnerships, Limited Liability Partnerships (LLPs), and Companies, including One Person Company (OPC), Private Limited, and Public Limited, alongside Hindu Undivided Family (HUF), Section 8 Companies, Society, Trusts, and NGOs. A major takeaway was why investors prefer a Private Limited Company over an LLP. It comes down to trust. Companies require strict audits and exact Meeting Minutes during Director Meetings, giving investors immense confidence.
+
+Next, Mr. HARDIK KHARVA broke down Cap Tables, Valuation, and Deal Structuring. A Cap (Capitalization) Table shows who owns what percentage of a company at a given time. We learned about equity dilution when new investors buy in. For valuation, we discussed the Revenue Multiple Method using benchmarks from platforms like Tracxn. If a startup has no revenue, a Compulsorily Convertible Debenture (CCD) is used. It acts like a loan that turns into shares later, using a Valuation Floor and Cap to protect both parties.
+
+Mr. HARDIK KHARVA also covered Unit Economics and Customer Acquisition Cost (CAC). A Unit is the single item you measure, such as a customer, product, or transaction. We looked at formulas involving Average Order Value (AOV) and Cost of Goods Sold (COGS) to calculate Gross Margin. We explored Blended CAC, the total average cost to acquire a customer across all channels, and the crucial LTV to CAC Ratio. This compares a customer's Lifetime Value (LTV) against the cost to acquire them. If your LTV is not significantly higher than your CAC, the business model might not be sustainable.
+
+Understanding the legal and financial reality is what separates a passionate idea from a sustainable company. We left the studio today with a concrete roadmap to build something that lasts.
+
+P.S. Thank you to Mr. Bhavya Patel for his constant support and mentorship.
+
+hashtag#Startup hashtag#LegalCompliance hashtag#CapTable hashtag#UnitEconomics hashtag#Founders hashtag#Entrepreneurship hashtag#GLSUniversity hashtag#ParulUniversity hashtag#PIERC hashtag#VadodaraStartupStudio
+…more
+
+No alternative text description for this image
+
+No alternative text description for this image
+
+No alternative text description for this image
+Activate to view larger image,
+likecelebrate
+43
+Nirmit Fadia and 42 others
+
+Like
+
+Comment
+
+Repost
+
+Send
+593 impressions
+View analytics
+Feed post number 5
+View Dhiptanshu Malik’s graphic link
+Dhiptanshu Malik
+• You
+SIH ’24, 25 Finalist | Senior - Faculty of Engineering and Technology, GLS University • Computer Science & Engineering
+3mo •
+
+We are exactly one week into the PIERC - Parul University Startup Pre-Incubation Program at Parul University, and Day 7 shifted our focus entirely. Today was about how to sustain, brand, and sell our project.
+
+We started the morning by watching the Post-Budget Webinar for 2026 and 2027, focusing on 'Sabka Saath, Sabka Vikas'. Hearing insights from the Prime Minister and government leadership about the future of innovation in India gave us a strong sense of purpose before starting our core sessions.
+
+Our first session was with Mrs. Sonal Sudani, who made government funding very easy to understand. For early-stage founders, figuring out grants can feel overwhelming. She explained initiatives like SSIP, MSME, Startup India, SPARSH-BIRDC, and more in clear and simple steps, making the path to financial backing look much more achievable.
+
+Next, we learned about Logo Design and Brand Identity with Mr. Prince Bhadania. He shared a perspective that changed how I view design. A logo is not just a graphic. It is the emotional connection between your mission and your customers. We immediately started rethinking the visual presence of our own project to make sure it reflects our core values.
+
+The most inspiring part of the day was Mr. Shlok Solanki discussing Sales Strategy. He completely changed the way we look at selling. He explained that every customer has a CS, which stands for Current Situation, and a DS, which stands for Desired Situation. The goal of sales is simply to position your product as the bridge that fills the gap between the two. If you can clearly show how your product takes them from their current problem to their desired goal, the customer will buy it.
+
+He also taught us that sales is all about repetitive effort. The more you try, the more success you will see. As founders, we have to grow a thick skin and learn to handle rejections gracefully. He introduced a fascinating concept called Respected Broke versus Rejected Millionaire. This means it is better to face rejection repeatedly and build a successful, wealthy business than to protect your pride, avoid rejection entirely, and stay broke. He also reminded us that boring means money, meaning the most successful businesses often just solve practical, everyday problems.
+
+The day ended with a big moment for us. My friend Kavya Joshi and I presented our startup idea, focused on our Value Proposition, Business Model, and Market Survey & Research. Pitching our vision after a full day of learning about funding, branding, and sales felt incredibly grounding. We are clearer than ever on our direction.
+
+Thank you to all the speakers today, and to the Faculty of Engineering and Technology GLS University, GLS University for the constant support on this journey. We are not just building a product. We are building for impact.
+
+hashtag#ClimateTech hashtag#StartupIndia hashtag#Entrepreneurship hashtag#Founders hashtag#AgriTech hashtag#PreIncubation hashtag#SSIP hashtag#StartupGujarat hashtag#GLSUniversity hashtag#ParulUniversity hashtag#PIERC
+…more
+
+No alternative text description for this image
+
+No alternative text description for this image
+
+No alternative text description for this image
+Activate to view larger image,
+like
+50
+Nirmit Fadia and 49 others
+
+Like
+
+Comment
+
+Repost
+
+Send
+478 impressions
+View analytics
+Feed post number 6
+View Dhiptanshu Malik’s graphic link
+Dhiptanshu Malik
+• You
+SIH ’24, 25 Finalist | Senior - Faculty of Engineering and Technology, GLS University • Computer Science & Engineering
+3mo •
+
+"The truth of any market lies on the ground, not in a textbook."
+
+After a deep dive into the theory of market research on Day 4, Days 5 and 6 were dedicated to field research. My friend Kavya Joshi and I stepped out for the customer interaction phase of the PIERC - Parul University Cohort 9 Startup Pre-Incubation Program at Parul University. What we experienced was not just market research. It was a deeply emotional reality check about who we are actually building our solution for.
+
+It started with a simple tip to visit the local Anaya Nursery. There, we met Malhar Singh, studied their business model, and asked for references to farmers. This led us to Rose Nursery to meet Ravi Varma and Akhil Varma.
+
+While we were there explaining our vision, an unexpected moment occurred. A customer, a farmer named Harshad Jadav, overheard us. He stopped, listened to our idea, and simply said that every farmer would agree to this and that it is an amazing idea. Hearing that validation directly from a farmer was the greatest fuel we could have asked for.
+
+With that energy, we traveled across the district to meet the true veterans of the soil. First, we met Navneetbhai Patel in Chhani. He is a 53 y/o potato and banana farmer with 25 years of experience. He gave us clear insights into regional crop cycles and also shared details about his mango orchard in Sokhra.
+
+Next, we spoke with Pujabhai Rajput in Omkarpura, who has 33 years of experience growing methi and palak. The grit and resilience in his eyes after three decades of farming were truly inspiring.
+
+Finally, we met Snehal Bachubhai Patel, also in Omkarpura. With 18 years of experience, Snehal gave us two hours of his precious time. He did not just answer our questions, he mentored us. He explained the entire farming lifecycle and gave us a masterclass on how to approach and build trust with local Farmer Associations.
+
+When you spend hours listening to men who have dedicated decades to feeding us, you realize that startups are not just about technology, AI, or business models. They are about human impact. We are building our project so that the hardworking hands of farmers like Navneetbhai, Snehal, and Pujabhai finally get the value they deserve.
+
+A massive thank you to these incredible men for welcoming us into their farms. We are also grateful to PIERC - Parul University for pushing us to hit the ground and to the Faculty of Engineering and Technology GLS University, GLS University for its continued support.
+
+We are more driven than ever. The fields are calling!
+
+Next...Day 7. We will start with a presentation on Value Proposition, Business Model & Market Research, followed by a much-awaited workshop on Branding & Brand Identity, and Government of India's schemes for startups.
+
+hashtag#StartupJourney hashtag#FarmerFirst hashtag#GroundReality hashtag#CustomerDiscovery hashtag#PIERC hashtag#ParulUniversity hashtag#GLSUniversity hashtag#Founders hashtag#AgriTech hashtag#ClimateTech hashtag#BuildingInPublic
+…more
+
+No alternative text description for this image
+
+No alternative text description for this image
+
+No alternative text description for this image
+
+No alternative text description for this image
+Activate to view larger image,
+like
+56
+Shreya Khandelwal and 55 others
+2 comments
+1 repost
+
+Like
+
+Comment
+
+Repost
+
+Send
+762 impressions
+View analytics
+Feed post number 7
+View Dhiptanshu Malik’s graphic link
+Dhiptanshu Malik
+• You
+SIH ’24, 25 Finalist | Senior - Faculty of Engineering and Technology, GLS University • Computer Science & Engineering
+4mo •
+
+Following up on our deep dive into value propositions yesterday, Day 4 of the PIERC - Parul University Cohort 9.0 Startup Pre-Incubation Program at Parul University focused on understanding the battlefield. Today, we tackled Market Research and Competitor Analysis. I was with Kavya Joshi representing the Faculty of Engineering and Technology GLS University, GLS University.
+
+We started by breaking down Market Research into four main pillars:
+
+Customer Discovery
+
+Market Sizing. This involves understanding our TAM, SAM, and SOM. This measures total universal demand, the specific portion we can reach, and the realistic slice we can capture right now.
+
+Competitive Analysis. This means looking at Direct competitors doing the exact same thing, Indirect competitors solving the same problem differently, and Emerging competitors just entering the space.
+
+Pricing Strategy to maximize revenue.
+
+From there, we went deeper into market segmentation. We learned to find our specific niche using primary research (talking directly to potential customers) and secondary research (studying existing industry data). We also learned to spot common research mistakes early and detect potential challenges before they become roadblocks.
+
+One of the most engaging parts of the day was an interactive Mentimeter session focused on Competitor Analysis. It completely shifted our perspective on indirect competitors. For example, if you are launching a new airline, you might think your only competition is other airlines like Indigo or Air India. However, one of your biggest actual competitors is the Indian Railways. They solve the same customer need for travel, just in a different way. It was a great reminder to look outside the obvious categories.
+
+We also covered the spectrum of Affordability versus Premium. This is the business decision of whether to offer a budget-friendly product to a mass market or a high-end product to a select few. Another key concept was top-down versus bottom-up market segmentation. Top-down starts with a massive view of the entire industry and narrows it down to your specific target audience. Bottom-up does the opposite. It starts with your local sales estimates and builds upward to project your overall market potential.
+Finally, we spent time on the critical importance of real customer interaction to test business assumptions. We learned how to map out what we think we know through assumption mapping, and more importantly, how to validate those assumptions through actual market research using Hypothesis Testing and Hypothesis Learning cards.
+
+It was an intense but incredibly valuable day of learning. We are leaving with a clearer picture of our market environment and the right tools to analyze it properly.
+
+We are grateful to PIERC - Parul University for having us and to our mentors today - Bhavya Patel and Dr. Prashant Khanna (Ph.D), for their helpful insights. Next step - field research!!
+…more
+
+No alternative text description for this image
+
+No alternative text description for this image
+
+No alternative text description for this image
+
+No alternative text description for this image
+Activate to view larger image,
+like
+57
+Zurin Jariwala and 56 others
+4 reposts
+
+Like
+
+Comment
+
+Repost
+
+Send
+913 impressions
+View analytics
+Feed post number 8
+View Dhiptanshu Malik’s graphic link
+Dhiptanshu Malik
+• You
+SIH ’24, 25 Finalist | Senior - Faculty of Engineering and Technology, GLS University • Computer Science & Engineering
+4mo •
+
+"Sometimes good things fall apart so better things can fall together."
+
+After my second SIH Grand Finale, I was looking for new opportunities. New opportunities to grow, new opportunities to win!!
+
+While I participated in some hackathons....I will talk about them later. Today, I am here to talk about our first step in the world of startups.
+
+I am really proud to announce that our startup idea was selected for Cohort 9.0, PIERC - Parul University's 12-day (2nd to 14th March) Pre-Incubation Program. Going back to early January, my friend Kavya Joshi approached me to participate in the Vadodara Startup Fest (VSF) 2026's Startup Idea Competition. I was full of spirit at the time, and I was eager to participate. So, of course, I agreed. Along with my good friends Khush Purohit and Amulya Anamdasu. We worked hard on the idea, created an MVP, prepared a pitch deck, analyzed our existing market competitors, and presented it for two online rounds. We were happy when we got through the first round. We were even happier when we were invited for pre-incubation in the second round.
+
+Unfortunately, we missed the offline final valedictory round because of exams. However, we were still invited to the program. We again couldn't join for the first two days because of our exams, but my friend Kavya Joshi and I were there today, on Day 3, to represent the Faculty of Engineering and Technology GLS University, GLS University. And it was amazing!!
+
+Day 3 was all about Value Proposition and Business Model. Today was the day we focused on understanding the customer's perspective, how we solve their problems, and understanding their gains and losses regarding the solution we are building. We also went over creating our business model. Understanding the methodology behind making proper business decisions, adapting the business model to the fluctuating market, analyzing and acknowledging the costs, and most importantly, understanding customers and the channels to approach them.
+
+The experience was valuable. We even got the opportunity to engage with and understand other startups in the program. We exchanged opinions, understood each other's business models, cited improvements, and some even engaged in heated debates. We all went back home with a good understanding of where we were lacking and how we could analyze the customers and the market better. The group activity sessions were especially helpful.
+
+We are grateful to Parul University for being such gracious hosts and allowing us to use their university bus to travel in and out of their remote yet lovely campus. We are also grateful to PIERC - Parul University for the opportunity to participate. Finally, we are thankful to GLS University and the Faculty of Engineering and Technology GLS University for its continued support. Special thanks to our mentors today - Dr. Prashant Khanna (Ph.D) and Hutesh Baviskar. We are excited for Day 4!!
+…more
+
+No alternative text description for this image
+
+No alternative text description for this image
+
+No alternative text description for this image
+
+No alternative text description for this image
+Activate to view larger image,
+likesupport
+87
+Vishwajeet Channagire and 86 others
+2 comments
+
+Like
+
+Comment
+
+Repost
+
+Send
+1,180 impressions
+View analytics
+Feed post number 9
+Dhiptanshu’s profile photo
+Dhiptanshu Malik reposted this
+
+View Kavya Joshi’s graphic link
+Kavya Joshi
+• 1st
+Founder - CarbonVerse | SIH 2025 Winner | DRDO Hackathon Winner | Breach’25 Winner | SSIP 2025 State Finalist | AI, Cloud & Blockchain Engineer
+5mo • Edited •
+🚀 Cyber Shadez 2026: The Age of Agentic AI is Here! 🤖🛡️
+
+📄 Swipe through the flyer to explore events, schedule & prizes
+
+I am thrilled to share that GLS University is hosting its National Level TechFest, Cyber Shadez 2026, on February 12th & 13th, 2026.
+
+This year, we are exploring the cutting-edge theme of "Agentic AI", shifting the focus from simple automation to intelligent, autonomous decision-making.
+
+As part of the B.Tech (Faculty of Engineering & Technology), I am especially excited about Track 3, designed specifically for engineering students (CS/IT/CE). We have curated four distinct events that blend competition with deep learning.
+
+🔥 The B.Tech Arena (Track 3) Events:
+• Rise of the Agents – Build AI that can think, decide, and act beyond basic automation (Phase 1 & 2)
+• Agent vs Agent (Cyber Defense Arena) – Test your AI defenses in a competitive showdown
+• Bug Bounty Workshop & Competition – Learn hands-on and hunt real vulnerabilities
+• Cipher Hunt – A cryptographic treasure hunt to challenge your problem-solving skills
+
+🎓 Learn from the Best
+Beyond the competitions, we are also hosting seminars by industry experts, offering valuable insights into the future of AI and Cyber Security.
+
+✨ Why Participate?
+✅ Registration is completely FREE
+🏆 Prize Pool worth ₹1,00,000+
+📜 Certificates for all participants
+🗓 Dates: 12th – 13th February, 2026
+📍 Venue: GLS University, Ahmedabad
+⏳ Register by: February 1st, 2026
+
+Join us to learn, compete, and connect with the best minds in tech!
+
+👇 Register Here:
+https://lnkd.in/dB9iyBBZ
+
+hashtag#CyberShadez2026 hashtag#AgenticAI hashtag#GLSUniversity hashtag#FET hashtag#CyberSecurity hashtag#ArtificialIntelligence hashtag#Seminars hashtag#TechFest hashtag#Ahmedabad hashtag#StudentDevelopers
+…more
+Your document has finished loading
+like
+104
+You and 103 others
+4 reposts
+
+like
+Like
+
+Comment
+
+Repost
+
+Send
+Feed post number 10
+Dhiptanshu’s profile photo
+Dhiptanshu Malik reposted this
+
+View Amulya Anamdasu’s graphic link
+Amulya Anamdasu
+• 1st
+SIH’25 Finalist || SIH’24 Finalist || AI/ML || Full - Stack Developer || Student at GLS University || CSE
+5mo •
+🎯 Ready to hunt??
+
+Join the Bug Bounty Challenge at Cyber Shadez 2026!
+Attention all tech enthusiasts and security researchers!
+
+As part of Cyber Shadez 2026, GLS University's National TechFest, Faculty of Engineering and Technology GLS University is hosting an intensive Bug Bounty event designed for those who love to find vulnerabilities and secure the digichance to learn from the best and prove your skills on a national stage.
+
+🗓️ Event Schedule
+• Day 1 (Feb 12): Deep-dive Bug Bounty Workshop to sharpen your methodology.
+• Day 2 (Feb 13): The official Bug Bounty Competition—put your skills to the test in a real-world scenario.
+
+🎖Why Participate?
+
+• Exciting Prizes: Compete for a share of prizes worth over Rs. 1,00,000+ across the TechFest.
+
+• Expert Learning: Gain insights from industry experts with experience at the Ministry of Home Affairs.
+
+• Certification: All participants receive certificates, with special winning certificates and cash prizes for top performers.
+
+• Theme: Explore the future of tech under this year's theme: Agentic AI.
+
+• Registration: FREE!
+
+• Deadline: February 01, 2026
+
+• Location: GLS University Campus, Ahmedabad.
+
+• Register here: https://lnkd.in/dwNPkhWZ
+
+Don't miss out on one of the most anticipated cyber security events of the year. Scan the QR code in the poster to secure your spot now!
+
+Questions? Reach out to our Track-3 Convener:
+📞 Dr. Tejas Bhatt: 9979749213
+
+Student Organizers:
+Amulya Anamdasu (me)
+Zurin Jariwala
+Dhiptanshu Malik
+Khush Purohit
+
+hashtag#CyberShadez2026 hashtag#BugBounty hashtag#CyberSecurity hashtag#GLSUniversity hashtag#AgenticAI hashtag#TechFest hashtag#EthicalHacking hashtag#InfoSec
+…more
+
+Play
+Remaining time
+0:04
+1x
+
+Playback speed
+
+Unmute
+
+Turn fullscreen on
+like
+35
+3 reposts
+
+like
+Like
+
+Comment
+
+Repost
+
+Send
+Feed post number 11
+View Dhiptanshu Malik’s graphic link
+Dhiptanshu Malik
+• You
+SIH ’24, 25 Finalist | Senior - Faculty of Engineering and Technology, GLS University • Computer Science & Engineering
+6mo •
+
+Ending 2025 with a blast!! I am happy to share that I have just completed an online course on Blockchain Technology [90 hrs] by Reliance Foundation Skilling Academy through the Skill India Digital Hub and National Skill Development Corporation (NSDC).
+
+Understanding Blockchain Technology in today's world is necessary. Through this interactive course, I explored the world of Blockchain and cryptocurrencies from a very fundamental level with practical exposure through activities. These activities allowed me to explore the architecture, working, and security of Blockchain, the working of Bitcoin, along with crucial Ethereum development technologies.
+
+I also explored cryptocurrency mining, and validation via consensus mechanisms like Proof-of-Work (PoW) - where the miners solve complex mathematical problems to validate a transaction and add a block to the ledger, the more energy efficient Proof-of-Stake (PoS) - where the validators 'stake' a collateral amount to create new blocks, the less scalable multi-state voting algorithm Practical Byzantine Fault Tolerance (PBFT) - where 2 out of 3 honest nodes confirm a state before moving to the next, and more.
+
+Most importantly, I got the necessary practical exposure by exploring Cryptocurrency wallets like WazirX and MetaMask, Ethereum-based Decentralized Applications (DApps), and creating my own Smart Contracts. Smart Contracts are self-executing programs that act like agreements, automating the actions required in a blockchain transaction. Smart Contracts are faster, cost-efficient, transparent, and secure, as they are based on the decentralized blockchain technology.
+
+I created my first smart contracts using the Remix IDE. This IDE allowed me to write contracts based on the Object-Oriented Programming Language - Solidity efficiently. After defining the compiler version in the code, we define a Contract, which acts like a Class in the program. The contract can contain several functions, each having a gas fee. Gas fees are like a transaction cost, which is paid in ETH to a validator on the Ethereum network. After I have finished writing my contract, I save the '.sol' file and compile it using a selected compiler version. After compiling, I can easily deploy it on an Ethereum network thanks to Remix IDE. I deployed my contracts on the Sepolia Testnet. A testnet is a parallel version of a LIVE blockchain network that is used for development with no real costs. I was also easily able to push it to my remote repository on GitHub using simple Git commands, which were built into the Remix IDE GUI.
+
+This is just a start, as I am planning to go deeper into smart contracts and then go on to develop DApps. I am thankful to the Reliance Foundation and the National Skill Development Corporation for building and providing this fundamental and interactive course.
+…more
+
+No alternative text description for this image
+
+No alternative text description for this image
+Activate to view larger image,
+like
+46
+2 comments
+
+Like
+
+Comment
+
+Repost
+
+Send
+778 impressions
+View analytics
+Feed post number 12
+View Dhiptanshu Malik’s graphic link
+Dhiptanshu Malik
+• You
+SIH ’24, 25 Finalist | Senior - Faculty of Engineering and Technology, GLS University • Computer Science & Engineering
+6mo •
+
+I am happy to share that I attended a 2-day, 16-hour workshop by Koenig Solutions Pvt. Ltd. and Microsoft on creating a dashboard with Power BI earlier this semester. This was my introduction to Microsoft's Power Platform. Microsoft Power Platform with tools like Power BI, Power Apps, Power Automate, and more empowers businesses to build apps, organize and analyze data, and automate workflow with faster low-code tools, which helps the businesses improve efficiency while fostering innovation and integrating with the robust Microsoft ecosystem easily.
+
+BI in Power BI stands for 'Business Intelligence.' Power BI is that all-in-one tool that can be used to normalize and cleanse raw data and make interactive reports and dashboards using that same data. Power BI also allows us to create an app using the features in the report with Microsoft Fabric. Fabric allows us to create a workplace, create a dashboard in that workflow, and host the chosen features from the report in the form of an application. Power BI also has a Q&A feature in the dashboard. You can ask any question, like 'What is average revenue?' or 'Top products by category' or 'Top markets by %' and you will have your answer in the form of an interactive visualization like a tree or a graph.
+
+Fabric also allows one to share the BI report in their organization with a robust access control. Which means the admin can easily manage which department or employee can have access to which data feature. One of the best things about data representation using Power BI is that you can directly bring that interactive experience to your PowerPoint presentations. Power BI also has Microsoft Copilot AI support, which allows the user to interact with the data, generate DAX formulas, and reports using natural language.
+
+I am grateful to our trainer, Mr. Tata Subramanian - who led the 16-hour workshop, and my institute, the Faculty of Engineering and Technology GLS University, GLS University for organizing this workshop with Koenig Solutions Pvt. Ltd. and Microsoft.
+…more
+Activate to view larger image,
+graphical user interface, application
+Activate to view larger image,
+likeinsightfulsupport
+41
+2 comments
+
+Like
+
+Comment
+
+Repost
+
+Send
+1,319 impressions
+View analytics
+Feed post number 13
+View Dhiptanshu Malik’s graphic link
+Dhiptanshu Malik
+• You
+SIH ’24, 25 Finalist | Senior - Faculty of Engineering and Technology, GLS University • Computer Science & Engineering
+6mo •
+
+Happy and grateful to share that I was once again, a part of the Smart India Hackathon (SIH) Grand Finale - Software Edition!!!
+
+SIH has always been special to me. From not getting shortlisted the first time, to being amongst the top 5 the second and third time....it has been quite a journey.
+
+This time, we went with the Problem Statement ID 25222 - Digital Twin for CO₂ Capture in Urban Settings, which was given by the Department of Science and Technology (DST) under the Ministry of Science and Technology.
+
+We went through the internal round with our demo prototype, achieved the recognition as one of the best performing teams and came back with knowledge that got us through the final round. Through the evaluators, we learnt about the environmental factors like NDVI, LULC and Albedo - that affect CO₂ emissions, and about the areas we were lacking with respect to our demo.
+
+For the 36 hour Grand Finale which happened on 8-9 December, International Institute of Information Technology - I2IT Pune hosted us graciously. This was our second time coming to Pune in the same year as earlier we traveled here for an Industrial Visit with our college. I loved it. The city was bustling with energy, the people were welcoming and the tech parks at Hinjewadi...where the college was located, were simply inspiring.
+
+As the event started with the inaugural ceremony, we were excited to get started with our project. We worked sleeplessly, depending on a fair share of coffee and lemonade to keep our mind fresh. Under the guidance of our team mentor Dr. Madhuri Chopade, we were working towards an amazing implementation of our ideas to a point that it was really close to go through the testing phase before the release. We were also guided by SIH mentors like Mr. Akash Kumar, who was up almost all night to help out the participating teams. His guidance was really appreciated, in relation to understanding what our evaluators wanted and the security of our LIVE data sources.
+
+Even though we couldn't clench the first rank, this project really helped us work with the skills that will be important in real-life project building scenarios. One of them was the proper version control, several members managing the repo. Another was system and data security, where we encrypted our API keys and static data sources, while establishing the fallbacks like alternate data sources and caches, in case the original LIVE data source is down.
+
+A huge shout out to my team JavaChip$ - Khush Purohit, Amulya Anamdasu, Bhakti Patel, Zurin Jariwala and Shashvat Shah for doing an amazing job with the project and presentation.
+
+I am grateful to our mentor Dr. Madhuri Chopade, college SPOC Shivangi Gandhi and our institute Faculty of Engineering and Technology GLS University, GLS University for supporting us throughout.
+
+I am also grateful to All India Council for Technical Education (AICTE), MoE's Innovation Cell, and Government of India for organising the event.
+…more
+
+No alternative text description for this image
+
+No alternative text description for this image
+
+No alternative text description for this image
+
+No alternative text description for this image
++3
+Activate to view larger image,
+likecelebratelove
+111
+6 comments
+
+Like
+
+Comment
+
+Repost
+
+Send
+2,266 impressions
+View analytics
+Feed post number 14
+View Dhiptanshu Malik’s graphic link
+Dhiptanshu Malik
+• You
+SIH ’24, 25 Finalist | Senior - Faculty of Engineering and Technology, GLS University • Computer Science & Engineering
+11mo •
+
+Happy to share that I have attended and completed a workshop on Green Skills and Artificial Intelligence under the Edunet Foundation and Shell's Skill4Future Program. Through this workshop, I got familiar with many important market-relevant skills like Retrieval-Augmented Generation (RAG), Natural Language Processing (NLP), Computer Vision, and Feature Engineering.
+
+My favorite part about this workshop was the hands-on experience I gained by working on projects. We trained our models, used and fine-tuned the existing models, and deployed them using Python libraries like Gradio and Streamlit. We were also introduced to the treasure troves of AI models like HuggingFace, where we deployed our apps. More about the projects in upcoming posts.
+
+I am thankful to my mentors, Mr. Arjun Vankani and Dr. Krishn Limbachiya, who guided us throughout the workshop. I am also thankful to the Faculty of Engineering and Technology, GLS University, for allowing us to learn directly from industry experts.
+
+This was a great learning experience. I am looking forward to more such workshops in the future.
+…more
+Activate to view larger image,
+No alternative text description for this image
+Activate to view larger image,
+likecelebrate
+60
+9 comments
+
+Like
+
+Comment
+
+Repost
+
+Send
+1,841 impressions
+View analytics
+Feed post number 15
+View Dhiptanshu Malik’s graphic link
+Dhiptanshu Malik
+• You
+SIH ’24, 25 Finalist | Senior - Faculty of Engineering and Technology, GLS University • Computer Science & Engineering
+1yr •
+
+These 36 hours were intense. We worked on technologies that were new for us, we learnt as we implemented. It was a task but it was fun. Hackathon is not just a technical event, it is also a social event. We interacted with the other teams and mutually learned from each other. This was a great experience and I look forward to participating again.
+hashtag#SIH2024
+…more
+View Dr. Vishal Narvani’s graphic link
+Dr. Vishal Narvani
+• 1st
+PhD | Assistant Professor | SIH Winning Team Mentor | Gujarat Hackathon Winning Team Mentor
+1yr •
+36 hours at hashtag#SIH2024 was not just about overcoming challenges, but also about realizing how much I’ve grown as a mentor and as a person.
+There were moments when I felt lost, unsure if we’d find our way, but in those moments, I also found something I didn’t expect – deep connections, shared struggles, and a bond that will last beyond the event.
+It’s hard to put into words how much this experience means to me. Sometimes, the most meaningful journeys are the ones that aren’t easy, and this one will stay with me forever.
+
+Grateful for every moment, every lesson, and every person who made this journey unforgettable.
+…more
+like
+7
+
+Like
+
+Comment
+
+Repost
+
+Send
+402 impressions
+View analytics
+Feed post number 16
+View Dhiptanshu Malik’s graphic link
+Dhiptanshu Malik
+• You
+SIH ’24, 25 Finalist | Senior - Faculty of Engineering and Technology, GLS University • Computer Science & Engineering
+1yr •
+
+We are going to give our best!!
+View Dr. Vishal Narvani’s graphic link
+Dr. Vishal Narvani
+• 1st
+PhD | Assistant Professor | SIH Winning Team Mentor | Gujarat Hackathon Winning Team Mentor
+1yr • Edited •
+Excited to kick off 36 hours of intense innovation at Smart India Hackathon (SIH-2024) here in Coimbatore, Tamil Nadu as a mentor!🚀
+
+The passion and innovation here are inspiring, and I can’t wait to see what we achieve together in the coming hours!
+
+Let’s make some magic happen! 💡
+hashtag#sih2024 hashtag#smartindiahackathon
+Shivangi Gandhi
+Dhiptanshu Malik
+Amulya Anamdasu
+Bhakti Patel
+Khush Purohit
+Zurin Jariwala
+Shreyas Agrawal
+…more
+
+No alternative text description for this image
+
+No alternative text description for this image
+
+No alternative text description for this image
+
+No alternative text description for this image
+Activate to view larger image,
+like
+6
+1 comment
+
+Like
+
+Comment
+
+Repost
+
+Send
+228 impressions
+View analytics
+Feed post number 17
+View Dhiptanshu Malik’s graphic link
+Dhiptanshu Malik
+• You
+SIH ’24, 25 Finalist | Senior - Faculty of Engineering and Technology, GLS University • Computer Science & Engineering
+1yr •
+
+I am excited to share that my team — JavaChip$, has qualified for the Grand Finale of Smart India Hackathon 2024.
+
+We are selected for the problem statement SIH1704, which was submitted by the Union Ministry of Panchayati Raj. The main focus of the problem statement was the gamification of rural planning using the given drone land survey maps and GIS data.
+
+GIS stands for Geographic Information System, which is a framework for gathering, managing, and analysing data. It analyzes spatial location and organizes layers of information into visualizations using maps and 3D scenes. Using the given drone land survey maps and GIS data, we have to create a map on which the users can practice rural development, keeping the conditions and features given in the description of the problem statement in mind. The project is similar to rural or city simulators like Farmville and Theotown, where the user has to develop a village keeping several things, including the happiness of the villagers, in mind.
+
+We will be travelling to Coimbatore, Tamil Nadu for the Grand Finale. It is a long way from home in Ahmedabad, but that's what makes this more exciting.
+
+I thank the Ministry of Education's Innovation Cell for organising this event, and I thank my college faculties for supporting us throughout our journey. I am confident in the abilities of our team and know we will give our very best!
+
+Team JavaChip$~
+Amulya Anamdasu
+Bhakti Patel
+Zurin Jariwala
+Shreyas Agrawal
+Khush Purohit - Leader
+and me...
+from GLS University Faculty of Engineering and Technology
+…more
+Activate to view larger image,
+No alternative text description for this image
+Activate to view larger image,
+likecelebrate
+54
+4 comments
+
+Like
+
+Comment
+
+Repost
+
+Send
+1,863 impressions
+View analytics
+Feed post number 18
+View Dhiptanshu Malik’s graphic link
+Dhiptanshu Malik
+• You
+SIH ’24, 25 Finalist | Senior - Faculty of Engineering and Technology, GLS University • Computer Science & Engineering
+2yr • Edited •
+
+I am really happy to share that I've completed my 8 week online NPTEL course on Recommender Systems.
+
+It's a field in machine learning that helps with predicting what people are looking for out of millions of options by providing personalised suggestions for product most relevant to the user.
+…more
+Activate to view larger image,
+timeline
+Activate to view larger image,
+like
+12
+4 comments 
+
+Resume:
+Dhiptanshu Malik
+§ Dhiptanshu | ï Dhiptanshu | # dhiptanshu@gmail.com | H +91 96013 35746
+Introduction
+I am a 4th year student pursuing B.tech in Computer Science and Engineering. I consider myself a
+responsible and orderly person. I am really looking forward to work on exciting projects.
+Skills
+• OOP with Python, C++, Java
+• Python backend with Flask, Django, FastAPI
+• MongoDB/PostgresSQL, Express.js, React, Node.js (MERN/PERN)
+• Cross-platform development Flutter SDK with Dart, Native Android development with Kotlin, Java
+• Version control with Git
+• Linux Scripting with Bash, AWT, Perl
+• Databases with MySQL, PostgreSQL, SQLite, BaaS with Firebase, Supabase
+• Blockchain Smart Contracts using Solidity
+• Hosting with AWS Cloud, Oracle Cloud, Vercel
+Accomplishments
+• Qualified for Pre-Incubation for PIERC’s Cohort 9 Pre-Incubation Programme under Parul University
+as a Founder of a Web3 startup, offered incubation at PIERC and project approved for SSIP grant.
+• 2-Time (Top 5) SIH Finalist (2024, 2025): Consistent Excellence on the National Stage. Built a game
+on Rural Development and Planning in 2024, a Digital Twin for CO2 capture and intervention in 2025.
+• GLS FET Internal Hackathon 2024, 2025 Second Runners Up: Performing and delivering
+on an institutional stage.
+• Finalist (Top 10) - AU Ingenium 7.0 (2026): Presented our Digital Twin-based solution on an urban
+planning problem.
+Projects
+CO2DigitalTwin Link to Demo
+A 3D interactive dashboard for monitoring and simulating CO2 levels across India. This application
+leverages CesiumJS for 3D geospatial visualization, providing real time and baseline data analysis to
+support urban planning and environmental interventions. Built for SIH 2025 (Software Edition) Grand
+Finale.
+Village Craft Link to Demo
+VillageCraft is a web-based 3D city-building simulation game that integrates real-world Geographic Information
+System (GIS) data to generate immersive environments. Users can plan, build, and manage
+a village economy within a browser-based 3D interface. Built for Smart India Hackathon 2024 (Software
+Edition) Grand Finale.
+GLS BB - A CTF Platform Link to Demo
+The GLS BB Platform is a secure, enterprise-grade Capture-The-Flag (CTF) environment designed for
+hosting internal security challenges, hackathons, and training events. Hosted on Oracle Cloud Free Tier.
+It was tested and used in real-time at GLS FET CyberShadez 2026 with more than 150 active participants.
+Education
+2023 - 2027 BTech. in Computer Science and Engineering at GLS University
+
+
+
+

@@ -224,3 +224,23 @@ export type AchievementData = {
   projectLinks: AchievementProjectLink[];
   skillLinks: AchievementSkillLink[];
 };
+
+export type MessageStatus = "unread" | "read" | "archived" | "replied";
+
+export type ContactMessage = {
+  id: string;
+  name: string;
+  email: string;
+  company: string | null;
+  role: string | null;
+  region: string | null;
+  subject: string;
+  message: string;
+  linkedin: string | null;
+  attachment_url: string | null;
+  status: MessageStatus;
+  internal_notes: string | null;
+  is_spam: boolean;
+  created_at: string;
+  updated_at: string;
+};

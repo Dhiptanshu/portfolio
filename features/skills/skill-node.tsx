@@ -2,45 +2,49 @@
 
 import { memo } from "react";
 import { Handle, Position, type NodeProps } from "reactflow";
-import { Award, Sparkles } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 import type { SkillNodeData } from "@/features/skills/skill-graph-utils";
 
 function SkillNodeComponent({ data, selected }: NodeProps<SkillNodeData>) {
   const { skill, categoryName, readonly } = data;
-  const progress = Math.min(100, Math.round((skill.xp % 1000) / 10));
+  const isMastered = skill.level >= 5;
 
   return (
     <div
-      className="group relative w-60 rounded-lg border bg-card/95 p-4 shadow-2xl backdrop-blur transition-transform duration-200 hover:-translate-y-1"
+      className={`rpg-panel relative w-64 p-4 transition-transform duration-200 cursor-pointer ${
+        selected ? "-translate-y-2 shadow-[8px_8px_0px_hsl(var(--border))]" : ""
+      }`}
       style={{
-        borderColor: selected ? skill.color_theme : "rgba(222, 200, 156, 0.24)",
-        boxShadow: selected ? `0 0 34px ${skill.color_theme}55` : `0 0 24px ${skill.color_theme}22`
+        backgroundColor: selected ? 'hsl(var(--card))' : 'hsl(var(--background))',
+        borderColor: selected ? skill.color_theme || 'hsl(var(--primary))' : 'hsl(var(--border))',
       }}
     >
-      <Handle type="target" position={Position.Left} className="!h-3 !w-3 !border-background !bg-primary" isConnectable={!readonly} />
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-md border border-border bg-secondary" style={{ color: skill.color_theme }}>
-            <Sparkles className="h-5 w-5" />
-          </div>
-          <div>
-            <p className="line-clamp-1 text-sm font-semibold text-foreground">{skill.name}</p>
-            <p className="line-clamp-1 text-xs text-muted-foreground">{categoryName}</p>
-          </div>
-        </div>
-        <div className="rounded-full border border-border bg-background px-2 py-1 text-xs text-primary">Lv {skill.level}</div>
+      <Handle type="target" position={Position.Left} className="!h-3 !w-3 !rounded-sm !border-2 !border-border !bg-background" isConnectable={!readonly} />
+      
+      <div className="flex justify-between items-start mb-2 border-b-2 border-dashed border-border/30 pb-2">
+        <p className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground">{categoryName}</p>
+        <span className={`text-[10px] font-black px-1.5 py-0.5 rounded border-2 border-border ${isMastered ? 'bg-accent text-accent-foreground' : 'bg-muted text-muted-foreground'}`}>
+          Lv. {skill.level}
+        </span>
       </div>
-      <p className="mt-3 line-clamp-2 min-h-10 text-xs leading-5 text-muted-foreground">{skill.description}</p>
-      <div className="mt-4">
-        <div className="mb-1 flex items-center justify-between text-[11px] text-muted-foreground">
-          <span className="inline-flex items-center gap-1"><Award className="h-3 w-3" />{skill.xp.toLocaleString()} XP</span>
-          <span>{progress}%</span>
+      
+      <div className="flex items-center gap-3 mb-2">
+        <div className="p-1.5 rounded bg-card border-2 border-border" style={{ color: skill.color_theme || 'hsl(var(--primary))' }}>
+          <Sparkles className="w-5 h-5" />
         </div>
-        <div className="h-1.5 overflow-hidden rounded-full bg-secondary">
-          <div className="h-full rounded-full" style={{ width: `${progress}%`, background: skill.color_theme }} />
-        </div>
+        <h3 className="font-black text-lg text-foreground leading-tight">{skill.name}</h3>
       </div>
-      <Handle type="source" position={Position.Right} className="!h-3 !w-3 !border-background !bg-primary" isConnectable={!readonly} />
+      
+      <p className="mt-2 text-xs font-medium leading-relaxed text-muted-foreground line-clamp-2">
+        {skill.description}
+      </p>
+      
+      <div className="mt-4 flex items-center justify-between text-[10px] font-bold uppercase text-muted-foreground">
+        <span>{skill.xp.toLocaleString()} EXP</span>
+        {selected && <ArrowRight className="w-3 h-3 text-primary animate-pulse" />}
+      </div>
+
+      <Handle type="source" position={Position.Right} className="!h-3 !w-3 !rounded-sm !border-2 !border-border !bg-background" isConnectable={!readonly} />
     </div>
   );
 }

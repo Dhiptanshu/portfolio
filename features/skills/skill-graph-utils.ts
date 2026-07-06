@@ -24,16 +24,20 @@ export function getSkillStats(skills: Skill[]) {
 }
 
 export function buildSkillNodes(data: SkillGraphData, readonly = true): Node<SkillNodeData>[] {
+  const categories = data.categories || [];
+  const projectLinks = data.projectLinks || [];
+  const relationships = data.relationships || [];
+
   return data.skills.map((skill) => ({
     id: skill.id,
     type: "skill",
     position: { x: skill.node_x, y: skill.node_y },
     data: {
       skill,
-      categoryName: skill.skill_categories?.name ?? data.categories.find((category) => category.id === skill.category_id)?.name ?? "Other",
-      projectLinks: data.projectLinks.filter((link) => link.skill_id === skill.id),
-      parentIds: data.relationships.filter((relationship) => relationship.child_skill_id === skill.id).map((relationship) => relationship.parent_skill_id),
-      childIds: data.relationships.filter((relationship) => relationship.parent_skill_id === skill.id).map((relationship) => relationship.child_skill_id),
+      categoryName: skill.skill_categories?.name ?? categories.find((category) => category.id === skill.category_id)?.name ?? "Other",
+      projectLinks: projectLinks.filter((link) => link.skill_id === skill.id),
+      parentIds: relationships.filter((relationship) => relationship.child_skill_id === skill.id).map((relationship) => relationship.parent_skill_id),
+      childIds: relationships.filter((relationship) => relationship.parent_skill_id === skill.id).map((relationship) => relationship.child_skill_id),
       readonly
     }
   }));
