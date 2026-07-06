@@ -2,13 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import { AdminShell } from '@/components/admin-shell';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Download, Activity, Users, Clock, Eye, MousePointerClick } from 'lucide-react';
 import { createSupabaseBrowserClient } from '@/lib/supabase/browser';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
-import { format, subDays, startOfDay, endOfDay } from 'date-fns';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer } from 'recharts';
+import { format, subDays } from 'date-fns';
 
 export default function AnalyticsAdminPage() {
   const [stats, setStats] = useState({
@@ -106,16 +105,15 @@ export default function AnalyticsAdminPage() {
   return (
     <AdminShell title="Visitor Analytics" description="Privacy-friendly insights on portfolio traffic.">
       <div className="flex items-center justify-between mb-6">
-        <Select value={timeRange} onValueChange={setTimeRange}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select time range" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="7d">Last 7 Days</SelectItem>
-            <SelectItem value="30d">Last 30 Days</SelectItem>
-            <SelectItem value="90d">Last 90 Days</SelectItem>
-          </SelectContent>
-        </Select>
+        <select 
+          value={timeRange} 
+          onChange={(e) => setTimeRange(e.target.value)}
+          className="flex h-10 w-[180px] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          <option value="7d">Last 7 Days</option>
+          <option value="30d">Last 30 Days</option>
+          <option value="90d">Last 90 Days</option>
+        </select>
         
         <Button onClick={handleExportCSV} variant="outline" className="gap-2">
           <Download className="w-4 h-4" /> Export CSV
@@ -169,7 +167,7 @@ export default function AnalyticsAdminPage() {
         <Card className="col-span-1 lg:col-span-2">
           <CardHeader>
             <CardTitle>Traffic Overview</CardTitle>
-            <CardDescription>Page views and unique sessions over time.</CardDescription>
+            <p className="text-sm text-muted-foreground">Page views and unique sessions over time.</p>
           </CardHeader>
           <CardContent>
             <div className="h-[300px] w-full">
@@ -196,7 +194,7 @@ export default function AnalyticsAdminPage() {
         <Card className="col-span-1">
           <CardHeader>
             <CardTitle>Recent Activity</CardTitle>
-            <CardDescription>Latest visitor events.</CardDescription>
+            <p className="text-sm text-muted-foreground">Latest visitor events.</p>
           </CardHeader>
           <CardContent>
             <div className="space-y-4 max-h-[300px] overflow-y-auto pr-2">
