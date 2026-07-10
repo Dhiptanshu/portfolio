@@ -58,33 +58,27 @@ A dynamic, highly interactive developer portfolio featuring a unique "Manual vs 
 *   **WebAssembly Emulation**: JS-DOS v8 (Running via static HTML integration)
 *   **Deployment**: Vercel
 
-## Cloud Deployment
+## System Architecture
 
-The platform is architected for frictionless deployment on Vercel, utilizing Supabase as the serverless backend.
+The platform is architected for frictionless, high-performance delivery using a modern serverless stack.
 
-### Quick Start Guide
+### Backend Infrastructure
+*   **Database**: Supabase (PostgreSQL) handles all relational data, from project descriptions to experience timelines.
+*   **Authentication**: Secured via Supabase Auth. The admin dashboard is strictly route-protected and requires verified credentials.
+*   **Security**: Row Level Security (RLS) policies ensure that public visitors only have read access, while write/update operations are strictly limited to authenticated admins.
 
-1.  **Supabase Setup**: Create a new Supabase project. Run the SQL migration files located in `supabase/migrations/` to initialize the database schema and Row Level Security (RLS) policies.
-2.  **Environment Variables**: Create a `.env.local` file at the root of the project:
-    ```env
-    NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-    ```
-3.  **Local Development**:
-    ```bash
-    npm install
-    npm run dev
-    ```
-4.  **Production Deployment**: Connect your GitHub repository to Vercel and supply the Supabase environment variables in the Vercel dashboard.
+### Frontend Delivery
+*   **Hosting**: Deployed on Vercel's Edge Network for global low-latency access.
+*   **Rendering**: Utilizes Next.js App Router for optimal Server-Side Rendering (SSR) and Static Site Generation (SSG), ensuring lightning-fast load times and SEO optimization.
+*   **Styling**: Tailwind CSS combined with Framer Motion provides fluid, responsive layouts scaling from 4K desktop monitors down to foldable mobile displays.
 
-## Administration Guide
+## Administration Ecosystem
 
-### Access
-Navigate to the secure admin route and authenticate with your Supabase administrative credentials to access the dynamic dashboard.
+Unlike traditional static portfolios, this site functions as a full-fledged Content Management System (CMS). 
 
-### Content Management
-*   **Initialization**: Run the `018_populate_portfolio_data.sql` migration to seed the database with initial placeholder content.
-*   **Live Editing**: Use the sidebar modules (Experience, Journey, Skills, Achievements, etc.) to Create, Read, Update, and Delete content. The public site pulls this data dynamically on every render or revalidation cycle.
+*   **Dynamic State**: The underlying PostgreSQL database serves as the single source of truth. Every skill, project, achievement, and experience entry on the site is pulled dynamically from the database.
+*   **Live Editing**: Through a hidden administrative route, content can be created, updated, or deleted via a custom GUI without ever touching the source code or triggering a new build.
+*   **Integrated Messaging**: Instead of relying on static `mailto:` links, the contact form pipes messages directly into a secure backend inbox interface within the admin panel.
 
 ## Project Structure
 
@@ -92,8 +86,7 @@ Navigate to the secure admin route and authenticate with your Supabase administr
 *   `components/`: Reusable UI components, custom cursors, layout wrappers, and the DOOM modal.
 *   `features/`: Domain-specific business logic (Split into `admin` dashboard views and public `sections`).
 *   `lib/`: Utility functions, Supabase client initializers, and TypeScript type definitions.
-*   `public/`: Static assets, including the JS-DOS `doom.jsdos` game bundle and `doom.html` emulator container.
-*   `supabase/migrations/`: SQL files for defining the PostgreSQL schema, RLS policies, and seed data.
+*   `public/`: Static assets, including the JS-DOS WebAssembly game bundle (`doom.jsdos`) and the emulator's `doom.html` container.
 
 ---
 **Interactive Developer Portfolio**<br>
