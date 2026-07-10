@@ -190,7 +190,7 @@ function CrudList<T extends Item>({ items, setItems, endpoint, createControl, ic
   const timeoutRef = useRef<Record<string, NodeJS.Timeout>>({});
 
   function update(id: string, patch: Partial<T>) {
-    setItems((prev) => prev.map((item) => (item.id === id ? { ...item, ...(patch as T) } : item)));
+    setItems(items.map((item) => (item.id === id ? { ...item, ...(patch as T) } : item)));
     
     if (timeoutRef.current[id]) clearTimeout(timeoutRef.current[id]);
     timeoutRef.current[id] = setTimeout(() => {
