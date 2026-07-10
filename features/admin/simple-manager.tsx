@@ -153,7 +153,7 @@ export function EntryManager({ sections, initialItems }: { sections: Section[]; 
   );
 }
 
-function CrudList<T extends Item>({ items, setItems, endpoint, createControl, iconRenderer }: { items: T[]; setItems: (items: T[]) => void; endpoint: string; createControl: React.ReactNode; iconRenderer?: (item: T) => React.ReactNode }) {
+function CrudList<T extends Item>({ items, setItems, endpoint, createControl, iconRenderer }: { items: T[]; setItems: React.Dispatch<React.SetStateAction<T[]>>; endpoint: string; createControl: React.ReactNode; iconRenderer?: (item: T) => React.ReactNode }) {
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => setIsMounted(true), []);
   
@@ -190,7 +190,7 @@ function CrudList<T extends Item>({ items, setItems, endpoint, createControl, ic
   const timeoutRef = useRef<Record<string, NodeJS.Timeout>>({});
 
   function update(id: string, patch: Partial<T>) {
-    setItems(items.map((item) => (item.id === id ? { ...item, ...(patch as T) } : item)));
+    setItems((prev) => prev.map((item) => (item.id === id ? { ...item, ...(patch as T) } : item)));
     
     if (timeoutRef.current[id]) clearTimeout(timeoutRef.current[id]);
     timeoutRef.current[id] = setTimeout(() => {
@@ -201,7 +201,7 @@ function CrudList<T extends Item>({ items, setItems, endpoint, createControl, ic
   async function remove(id: string) {
     const response = await fetch(endpoint, { method: "DELETE", body: JSON.stringify({ id }) });
     if (response.ok) {
-      setItems(items.filter((item) => item.id !== id));
+      setItems((prev) => prev.filter((item) => item.id !== id));
       toast.success("Item deleted");
     }
   }
