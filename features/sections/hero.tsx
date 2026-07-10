@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Gamepad2, ScrollText, Swords, Trophy, Users, Star, Code, Zap, Database, Cloud } from "lucide-react";
+import { Gamepad2, ScrollText, Swords, Trophy, Users, Star, Code, Zap, Database, Cloud, GraduationCap } from "lucide-react";
 import type { SocialLink } from "@/lib/types";
 
 const Icons: Record<string, any> = {
-  Swords, ScrollText, Trophy, Users, Star, Code, Zap, Database, Cloud
+  Swords, ScrollText, Trophy, Users, Star, Code, Zap, Database, Cloud, GraduationCap
 };
 
 const defaultStats = [
@@ -92,9 +92,28 @@ export function HeroSection({ socials = [], heroData }: { socials?: SocialLink[]
                   {data.title}
                 </h1>
                 
-                <p className="text-lg md:text-xl font-medium text-muted-foreground mb-8 max-w-2xl">
+                <p className="text-lg font-medium text-muted-foreground bg-muted p-4 rounded border border-border/50 shadow-inner mb-6">
                   {data.subtitle}
                 </p>
+
+                {(data.college_name || data.cgpa) && (
+                  <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8 bg-background border-2 border-border p-3 rounded shadow-[2px_2px_0px_hsl(var(--border))]">
+                    <div className="p-2 bg-primary/10 text-primary rounded border border-primary/20">
+                      <GraduationCap className="w-5 h-5" />
+                    </div>
+                    {data.college_name && (
+                      <span className="font-bold text-sm md:text-base">{data.college_name}</span>
+                    )}
+                    {data.college_name && data.cgpa && (
+                      <span className="text-muted-foreground hidden md:inline">•</span>
+                    )}
+                    {data.cgpa && (
+                      <span className="text-sm font-bold bg-accent text-accent-foreground px-2 py-0.5 rounded border border-border">
+                        CGPA: {data.cgpa}
+                      </span>
+                    )}
+                  </div>
+                )}
               </motion.div>
 
               {/* Action Buttons */}
@@ -104,18 +123,32 @@ export function HeroSection({ socials = [], heroData }: { socials?: SocialLink[]
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
-                <a
-                  href="#journey"
-                  className="rpg-panel rpg-panel-interactive bg-primary text-primary-foreground px-6 py-3 font-bold uppercase tracking-wider text-sm flex items-center gap-2"
-                >
-                  <Swords className="w-4 h-4" /> View Journey
-                </a>
-                <a
-                  href="#projects"
-                  className="rpg-panel rpg-panel-interactive bg-card text-foreground px-6 py-3 font-bold uppercase tracking-wider text-sm flex items-center gap-2"
-                >
-                  <ScrollText className="w-4 h-4" /> View Projects
-                </a>
+                {!(data.hidden_sections || []).includes('journey') && (
+                  <a
+                    href="#journey"
+                    className="rpg-panel rpg-panel-interactive bg-primary text-primary-foreground px-6 py-3 font-bold uppercase tracking-wider text-sm flex items-center gap-2"
+                  >
+                    <Swords className="w-4 h-4" /> View Journey
+                  </a>
+                )}
+                {!(data.hidden_sections || []).includes('projects') && (
+                  <a
+                    href="#projects"
+                    className="rpg-panel rpg-panel-interactive bg-card text-foreground px-6 py-3 font-bold uppercase tracking-wider text-sm flex items-center gap-2"
+                  >
+                    <ScrollText className="w-4 h-4" /> View Projects
+                  </a>
+                )}
+                {data.resume_url && (
+                  <a
+                    href={data.resume_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rpg-panel rpg-panel-interactive bg-accent text-accent-foreground px-6 py-3 font-bold uppercase tracking-wider text-sm flex items-center gap-2"
+                  >
+                    <ScrollText className="w-4 h-4" /> Resume
+                  </a>
+                )}
               </motion.div>
             </div>
           </div>

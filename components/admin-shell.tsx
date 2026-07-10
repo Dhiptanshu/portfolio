@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { LayoutDashboard, Library, Network, Milestone, Trophy, Images, Share2, Settings, Users, Inbox } from "lucide-react";
+import { LayoutDashboard, Library, Network, Milestone, Trophy, Images, Share2, Settings, Users, Inbox, Briefcase } from "lucide-react";
 import { AdminLogoutButton } from "@/components/admin-logout-button";
 import { cn } from "@/lib/utils";
 
 const nav = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/hero", label: "Hero & Profile", icon: Users },
+  { href: "/admin/experience", label: "Experience", icon: Briefcase },
   { href: "/admin/journey", label: "Journey", icon: Milestone },
   { href: "/admin/content", label: "Projects", icon: Library },
   { href: "/admin/skills", label: "Skills", icon: Network },

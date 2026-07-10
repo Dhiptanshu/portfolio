@@ -1,5 +1,5 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { getJourneys, getJourneyFilters, getSkillGraph, getAchievements } from "@/lib/data";
+import { getJourneys, getJourneyFilters, getSkillGraph, getAchievements, getExperiences } from "@/lib/data";
 import { HeroSection } from "@/features/sections/hero";
 import { JourneySection } from "@/features/sections/journey";
 import { ProjectsSection } from "@/features/sections/projects";
@@ -8,6 +8,7 @@ import { AchievementsSection } from "@/features/sections/achievements";
 import { ContactSection } from "@/features/sections/contact";
 import { SiteNav } from "@/features/sections/nav";
 import { ScrollProgress } from "@/features/sections/scroll-progress";
+import { ExperienceSection } from "@/features/sections/experience";
 
 export const revalidate = 60;
 
@@ -18,6 +19,7 @@ export default async function HomePage() {
   // Parallel data fetching
   const [
     journeys,
+    experiences,
     filters,
     skillGraph,
     achievementData,
@@ -26,6 +28,7 @@ export default async function HomePage() {
     { data: heroBlock },
   ] = await Promise.all([
     getJourneys(),
+    getExperiences(),
     getJourneyFilters(),
     getSkillGraph(),
     getAchievements(),
@@ -49,33 +52,71 @@ export default async function HomePage() {
   const projects =
     entries?.filter((entry: any) => entry.sections?.slug === "projects") || [];
 
+  const heroData = heroBlock?.content || {};
+  const hiddenSections = heroData.hidden_sections || [];
+  const wipMode = heroData.wip_mode || false;
+  const wipMessage = heroData.wip_message || "🚧 SYSTEM UNDER CONSTRUCTION 🚧 PROCEED WITH CAUTION 🚧";
+
   return (
     <>
       <div className="paper-grain" aria-hidden="true" />
+      
+      {wipMode && (
+        <div className="fixed top-0 left-0 right-0 z-[100] h-8 bg-[#ffcc00] border-b-4 border-black overflow-hidden flex items-center shadow-lg"
+             style={{ backgroundImage: 'repeating-linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), repeating-linear-gradient(45deg, #000 25%, #ffcc00 25%, #ffcc00 75%, #000 75%, #000)', backgroundPosition: '0 0, 10px 10px', backgroundSize: '20px 20px', opacity: 0.9 }}>
+          <div className="bg-black/80 w-full h-full absolute inset-0 mix-blend-multiply" />
+          <div className="animate-marquee whitespace-nowrap text-white font-black uppercase tracking-[0.3em] text-xs px-4 relative z-10 drop-shadow-md flex items-center">
+             <span className="mx-4">{wipMessage}</span>
+             <span className="mx-4">{wipMessage}</span>
+             <span className="mx-4">{wipMessage}</span>
+             <span className="mx-4">{wipMessage}</span>
+          </div>
+        </div>
+      )}
+
       <ScrollProgress />
-      <SiteNav />
+      <SiteNav resumeUrl={heroData.resume_url} hiddenSections={hiddenSections} />
 
       <main className="bg-background text-foreground">
-        <HeroSection socials={socials || []} heroData={heroBlock?.content} />
+        <HeroSection socials={socials || []} heroData={heroData} />
+
+        {!hiddenSections.includes("experience") && (
+          <ExperienceSection experiences={experiences as any[]} />
+        )}
 
         <div className="golden-line" />
-        <JourneySection
-          journeys={journeys}
-          categories={filters.categories}
-          tags={filters.tags}
-        />
+        
+        {!hiddenSections.includes("journey") && (
+          <JourneySection
+            journeys={journeys}
+            categories={filters?.categories || []}
+            tags={filters?.tags || []}
+          />
+        )}
 
         <div className="golden-line" />
-        <ProjectsSection projects={projects} />
+        
+        {!hiddenSections.includes("projects") && (
+          <ProjectsSection projects={projects as any[]} />
+        )}
 
         <div className="golden-line" />
-        <SkillsSection graph={skillGraph} />
+        
+        {!hiddenSections.includes("skills") && (
+          <SkillsSection graph={skillGraph} />
+        )}
 
         <div className="golden-line" />
-        <AchievementsSection data={achievementData} />
+        
+        {!hiddenSections.includes("achievements") && (
+          <AchievementsSection data={achievementData} />
+        )}
 
         <div className="golden-line" />
-        <ContactSection socials={socials || []} />
+        
+        {!hiddenSections.includes("contact") && (
+          <ContactSection socials={socials || []} contactOptions={heroData.contact_options} />
+        )}
       </main>
     </>
   );

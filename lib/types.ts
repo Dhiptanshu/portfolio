@@ -244,3 +244,26 @@ export type ContactMessage = {
   created_at: string;
   updated_at: string;
 };
+
+export type Experience = {
+  id: string;
+  company: string;
+  role: string;
+  employment_type: string;
+  location: string | null;
+  start_date: string;
+  end_date: string | null;
+  description: string | null;
+  logo_url: string | null;
+  display_order: number;
+  is_visible: boolean;
+  created_at: string;
+  updated_at: string;
+  tech_stack?: string[];
+  media_gallery?: {
+    url: string;
+    type: "image" | "video" | "pdf" | "embed";
+    title?: string;
+    caption?: string;
+  }[];
+};

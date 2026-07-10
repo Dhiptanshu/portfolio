@@ -1,11 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Save, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, Save, ArrowRight, Globe, Link as LinkIcon, MessageCircle } from "lucide-react";
 import type { SocialLink } from "@/lib/types";
 import { ContactForm } from "./contact-form";
+import { SocialIcon } from "@/components/social-icon";
 
-export function ContactSection({ socials }: { socials: SocialLink[] }) {
+const Icons: Record<string, React.ElementType> = {
+  Mail, Phone, MapPin, Globe, Link: LinkIcon, MessageCircle
+};
+
+export function ContactSection({ socials, contactOptions = [] }: { socials: SocialLink[], contactOptions?: any[] }) {
   return (
     <section id="contact" className="py-24 px-4 md:px-8 bg-background relative overflow-hidden">
       
@@ -34,7 +39,7 @@ export function ContactSection({ socials }: { socials: SocialLink[] }) {
         <div className="grid md:grid-cols-2 gap-8">
           {/* Main Action Menu */}
           <motion.div
-            className="rpg-panel bg-card p-6 flex flex-col gap-3"
+            className="rpg-panel bg-card p-6 h-full flex flex-col gap-3"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -43,40 +48,33 @@ export function ContactSection({ socials }: { socials: SocialLink[] }) {
             <h3 className="font-bold text-xl uppercase tracking-widest text-primary border-b-4 border-border/20 pb-3 mb-2 flex items-center gap-2">
               <ArrowRight className="w-5 h-5" /> Contact Options
             </h3>
-            
-            <a
-              href="mailto:dhiptanshu@outlook.com"
-              className="rpg-panel rpg-panel-interactive flex items-center gap-4 bg-background p-4 w-full group"
-            >
-              <div className="p-2 bg-primary text-primary-foreground rounded border-2 border-border group-hover:scale-110 transition-transform">
-                <Mail className="w-5 h-5" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Send Mail (Email)</span>
-                <span className="font-bold text-foreground">dhiptanshu@outlook.com</span>
-              </div>
-            </a>
-
-
-            <a 
-              href="https://www.google.com/maps/place/Ahmedabad,+Gujarat,+India"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rpg-panel rpg-panel-interactive flex items-center gap-4 bg-background p-4 w-full group"
-            >
-              <div className="p-2 bg-accent text-accent-foreground rounded border-2 border-border group-hover:scale-110 transition-transform">
-                <MapPin className="w-5 h-5" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Current Region</span>
-                <span className="font-bold text-foreground">Ahmedabad, India</span>
-              </div>
-            </a>
+            {contactOptions.map((opt, i) => {
+              const IconComp = Icons[opt.icon] || Mail;
+              // Alternate colors based on index for the icon background
+              const colorClass = i % 2 === 0 ? "bg-primary text-primary-foreground" : "bg-accent text-accent-foreground";
+              return (
+                <a
+                  key={i}
+                  href={opt.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rpg-panel rpg-panel-interactive flex items-center gap-4 bg-background p-4 w-full group"
+                >
+                  <div className={`p-2 rounded border-2 border-border group-hover:scale-110 transition-transform ${colorClass}`}>
+                    <IconComp className="w-5 h-5" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{opt.title}</span>
+                    <span className="font-bold text-foreground">{opt.value}</span>
+                  </div>
+                </a>
+              );
+            })}
           </motion.div>
 
           {/* Social Links Panel */}
           <motion.div
-            className="flex flex-col justify-between"
+            className="flex flex-col h-full"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -94,9 +92,14 @@ export function ContactSection({ socials }: { socials: SocialLink[] }) {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rpg-panel rpg-panel-interactive px-4 py-3 text-sm font-bold uppercase tracking-wider bg-background text-foreground text-center hover:bg-muted"
+                      className="rpg-panel rpg-panel-interactive p-3 flex items-center justify-center bg-background text-foreground hover:bg-muted group"
                     >
-                      Connect on {social.name}
+                      <div className="flex items-center gap-4 w-[16rem]">
+                        <div className="p-2 bg-secondary text-secondary-foreground rounded border border-border group-hover:scale-110 transition-transform shrink-0">
+                          <SocialIcon name={social.name} className="w-4 h-4" />
+                        </div>
+                        <span className="text-sm font-bold uppercase tracking-wider text-left whitespace-nowrap overflow-hidden text-ellipsis">Connect on {social.name}</span>
+                      </div>
                     </a>
                   ))}
                 </div>

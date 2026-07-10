@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { Map, MapPin } from "lucide-react";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
+import { Code2, MapPin, Menu, X } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const links = [
+  { label: "Experience", href: "#experience" },
   { label: "Journey", href: "#journey" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
@@ -12,8 +14,9 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
-export function SiteNav() {
+export function SiteNav({ resumeUrl, hiddenSections = [] }: { resumeUrl?: string, hiddenSections?: string[] }) {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -32,12 +35,12 @@ export function SiteNav() {
       <div className={`mx-auto flex max-w-7xl items-center justify-between rpg-panel px-4 py-3 md:px-6 md:py-4 transition-all duration-300 ${scrolled ? 'bg-background/95 backdrop-blur shadow-[4px_4px_0px_hsl(var(--border))]' : ''}`}>
         
         <a href="#" className="flex items-center gap-2 font-bold text-lg md:text-xl text-primary hover:scale-105 transition-transform">
-          <Map className="h-5 w-5 md:h-6 md:w-6" />
-          <span>Dhiptanshu<span className="text-foreground">.map</span></span>
+          <Code2 className="h-5 w-5 md:h-6 md:w-6" />
+          <span>Dhiptanshu <span className="text-foreground">Malik</span></span>
         </a>
         
         <nav className="hidden items-center gap-2 lg:flex bg-muted p-1 rounded-md border-2 border-border/50" aria-label="Main navigation">
-          {links.map((link) => (
+          {links.filter(l => !hiddenSections.includes(l.label.toLowerCase())).map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -48,18 +51,57 @@ export function SiteNav() {
           ))}
         </nav>
         
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
+          <ThemeToggle />
           <a
-            href="/resume.pdf"
+            href={resumeUrl || "/resume.pdf"}
             target="_blank"
             rel="noopener noreferrer"
-            className="rpg-panel rpg-panel-interactive px-4 py-2 text-xs font-bold uppercase tracking-wider text-foreground bg-accent flex items-center gap-2"
+            className="hidden sm:flex rpg-panel rpg-panel-interactive px-4 py-2 text-xs font-bold uppercase tracking-wider text-foreground bg-accent items-center gap-2"
           >
             <MapPin className="h-3 w-3" />
             Resume
           </a>
+          
+          <button 
+            className="lg:hidden p-2 bg-muted rounded-md border-2 border-border/50 text-foreground"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </div>
+
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="lg:hidden absolute top-[110%] left-4 right-4 rpg-panel bg-card p-4 shadow-xl flex flex-col gap-2"
+          >
+            {links.filter(l => !hiddenSections.includes(l.label.toLowerCase())).map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-4 py-3 rounded font-bold uppercase tracking-wider text-muted-foreground transition-all duration-200 hover:bg-muted hover:text-foreground hover:shadow-[2px_2px_0px_hsl(var(--border))]"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href={resumeUrl || "/resume.pdf"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 flex rpg-panel rpg-panel-interactive px-4 py-3 text-sm font-bold uppercase tracking-wider text-foreground bg-accent items-center justify-center gap-2"
+            >
+              <MapPin className="h-4 w-4" />
+              Resume
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

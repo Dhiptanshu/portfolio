@@ -153,3 +153,17 @@ export async function getAchievements({ admin = false }: { admin?: boolean } = {
     skillLinks: (skillLinks ?? []).filter((link) => admin || visibleAchievementIds.has(link.achievement_id)) as AchievementSkillLink[]
   };
 }
+
+export async function getExperiences({ admin = false }: { admin?: boolean } = {}) {
+  const supabase = await createSupabaseServerClient();
+  if (!supabase) return [];
+
+  let query = supabase
+    .from("experiences")
+    .select("*")
+    .order("start_date", { ascending: false });
+
+  if (!admin) query = query.eq("is_visible", true);
+  const { data } = await query;
+  return data ?? [];
+}

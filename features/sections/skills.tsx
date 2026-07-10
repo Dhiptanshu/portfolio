@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { MapIcon, Code2, Globe, Database, Smartphone, Cloud, Shield, Cpu, BookOpen, X, ExternalLink, Network } from "lucide-react";
 import type { Skill, SkillCategory, SkillGraphData } from "@/lib/types";
 
@@ -17,8 +16,18 @@ const getCategoryIcon = (name: string) => {
   return <Network className="w-5 h-5" />;
 };
 
+const getSearchContext = (categoryName: string) => {
+  const name = categoryName.toLowerCase();
+  if (name.includes("programming")) return "language";
+  if (name.includes("framework")) return "framework";
+  if (name.includes("database")) return "database";
+  if (name.includes("cloud") || name.includes("devops")) return "devops";
+  if (name.includes("tool")) return "tool";
+  if (name.includes("ai") || name.includes("ml")) return "machine learning";
+  return categoryName;
+};
+
 export function SkillsSection({ graph }: { graph: SkillGraphData }) {
-  const [activeSkill, setActiveSkill] = useState<Skill | null>(null);
 
   // Group skills by category
   const skillsByCategory = graph.categories.sort((a, b) => a.display_order - b.display_order).map(cat => ({
@@ -62,117 +71,21 @@ export function SkillsSection({ graph }: { graph: SkillGraphData }) {
               </h3>
               <div className="flex flex-wrap gap-3">
                 {category.skills.map((skill) => (
-                  <button
+                  <a
                     key={skill.id}
-                    onClick={() => setActiveSkill(skill)}
+                    href={`https://www.google.com/search?q=${encodeURIComponent(skill.name + ' ' + getSearchContext(category.name))}`}
+                    target="_blank"
+                    rel="noreferrer"
                     className="flex items-center gap-2 px-4 py-2 bg-card border-2 border-border rounded-md hover:border-primary hover:bg-secondary/10 hover:-translate-y-1 hover:shadow-[4px_4px_0px_hsl(var(--primary))] transition-all group"
                   >
                     <span className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">{skill.name}</span>
-                  </button>
+                  </a>
                 ))}
               </div>
             </motion.div>
           ))}
         </div>
       </div>
-
-      <AnimatePresence>
-        {activeSkill && (
-          <SkillModal skill={activeSkill} graph={graph} onClose={() => setActiveSkill(null)} />
-        )}
-      </AnimatePresence>
     </section>
-  );
-}
-
-function SkillModal({ skill, graph, onClose }: { skill: Skill; graph: SkillGraphData; onClose: () => void }) {
-  const projects = graph.projectLinks.filter(link => link.skill_id === skill.id);
-  const parentIds = graph.relationships.filter(r => r.child_skill_id === skill.id).map(r => r.parent_skill_id);
-  const childIds = graph.relationships.filter(r => r.parent_skill_id === skill.id).map(r => r.child_skill_id);
-  const relatedSkillIds = new Set([...parentIds, ...childIds]);
-  const relatedSkills = graph.skills.filter(s => relatedSkillIds.has(s.id));
-  const category = graph.categories.find(c => c.id === skill.category_id);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
-      onClick={onClose}
-    >
-      <motion.div
-        initial={{ y: 20, scale: 0.95 }}
-        animate={{ y: 0, scale: 1 }}
-        exit={{ y: 20, scale: 0.95, opacity: 0 }}
-        transition={{ type: "spring", bounce: 0.2 }}
-        onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-2xl max-h-[85vh] bg-card border-2 border-border rounded-xl shadow-[8px_8px_0px_hsl(var(--border))] overflow-hidden flex flex-col relative"
-      >
-        <div className="flex items-start justify-between p-6 md:p-8 border-b-2 border-border/30 bg-muted/30">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-2">
-              {getCategoryIcon(category?.name || "")}
-              {category?.name || "Skill"}
-            </div>
-            <h2 className="text-3xl font-bold text-foreground">{skill.name}</h2>
-          </div>
-          <button 
-            onClick={onClose} 
-            className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        <div className="p-6 md:p-8 overflow-y-auto custom-scrollbar flex-1 flex flex-col gap-8 bg-background">
-          <p className="text-base text-foreground leading-relaxed">
-            {skill.description || "No detailed description available for this technology."}
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4 pb-2 border-b-2 border-border/20">
-                Related Projects
-              </h3>
-              {projects.length > 0 ? (
-                <ul className="flex flex-col gap-3">
-                  {projects.map(p => {
-                    const href = p.entries?.demo_url ?? p.entries?.github_url ?? "#";
-                    return (
-                      <li key={p.id}>
-                        <a href={href} target="_blank" rel="noreferrer" className="group flex items-center justify-between p-3 bg-card border-2 border-border rounded-md hover:border-primary transition-all">
-                          <span className="font-bold text-sm text-foreground">{p.entries?.title ?? "Unknown Project"}</span>
-                          <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              ) : (
-                <p className="text-sm text-muted-foreground italic">No related projects found.</p>
-              )}
-            </div>
-
-            <div>
-              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4 pb-2 border-b-2 border-border/20">
-                Related Technologies
-              </h3>
-              {relatedSkills.length > 0 ? (
-                <div className="flex flex-wrap gap-2">
-                  {relatedSkills.map(s => (
-                    <div key={s.id} className="px-3 py-1.5 bg-muted border border-border/50 rounded-md text-xs font-bold text-foreground">
-                      {s.name}
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-sm text-muted-foreground italic">No specific related technologies mapped.</p>
-              )}
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
   );
 }

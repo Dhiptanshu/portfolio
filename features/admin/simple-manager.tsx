@@ -43,6 +43,8 @@ export function SectionManager({ initialItems }: { initialItems: Section[] }) {
   return <CrudList items={items} setItems={setItems} endpoint="/api/sections" createControl={<><Input placeholder="New section title" value={title} onChange={(e) => setTitle(e.target.value)} /><Button onClick={create} disabled={!title}><Plus className="h-4 w-4" />Create</Button></>} />;
 }
 
+import { SocialIcon } from "@/components/social-icon";
+
 export function SocialManager({ initialItems }: { initialItems: SocialLink[] }) {
   const [items, setItems] = useState(initialItems);
   const [name, setName] = useState("");
@@ -58,7 +60,13 @@ export function SocialManager({ initialItems }: { initialItems: SocialLink[] }) 
     setUrl("");
   }
 
-  return <CrudList items={items} setItems={setItems} endpoint="/api/socials" createControl={<><Input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} /><Input placeholder="URL" value={url} onChange={(e) => setUrl(e.target.value)} /><Button onClick={create} disabled={!name || !url}><Plus className="h-4 w-4" />Create</Button></>} />;
+  return <CrudList 
+    items={items} 
+    setItems={setItems} 
+    endpoint="/api/socials" 
+    iconRenderer={(item) => "name" in item ? <div className="p-2 bg-secondary text-secondary-foreground rounded border border-border"><SocialIcon name={item.name} className="w-5 h-5" /></div> : null}
+    createControl={<><Input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} /><Input placeholder="URL" value={url} onChange={(e) => setUrl(e.target.value)} /><Button onClick={create} disabled={!name || !url}><Plus className="h-4 w-4" />Create</Button></>} 
+  />;
 }
 
 export function EntryManager({ sections, initialItems }: { sections: Section[]; initialItems: Entry[] }) {
@@ -145,7 +153,7 @@ export function EntryManager({ sections, initialItems }: { sections: Section[]; 
   );
 }
 
-function CrudList<T extends Item>({ items, setItems, endpoint, createControl }: { items: T[]; setItems: (items: T[]) => void; endpoint: string; createControl: React.ReactNode }) {
+function CrudList<T extends Item>({ items, setItems, endpoint, createControl, iconRenderer }: { items: T[]; setItems: (items: T[]) => void; endpoint: string; createControl: React.ReactNode; iconRenderer?: (item: T) => React.ReactNode }) {
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => setIsMounted(true), []);
   
@@ -208,7 +216,10 @@ function CrudList<T extends Item>({ items, setItems, endpoint, createControl }: 
               {items.map((item) => (
                 <SortableRow key={item.id} id={item.id}>
                   <div className="grid gap-3 md:grid-cols-[1fr_1.4fr_auto_auto]">
-                    <Input value={primaryValue(item)} onChange={(e) => update(item.id, primaryPatch(e.target.value))} />
+                    <div className="flex gap-2 items-center">
+                      {iconRenderer && iconRenderer(item)}
+                      <Input value={primaryValue(item)} onChange={(e) => update(item.id, primaryPatch(e.target.value))} />
+                    </div>
                     <Textarea value={secondaryValue(item)} onChange={(e) => update(item.id, secondaryPatch(item, e.target.value))} />
                     <Button variant={item.is_visible ? "secondary" : "outline"} onClick={() => update(item.id, { is_visible: !item.is_visible } as Partial<T>)}>{item.is_visible ? "Visible" : "Hidden"}</Button>
                     <Button variant="destructive" size="icon" onClick={() => remove(item.id)} aria-label="Delete"><Trash2 className="h-4 w-4" /></Button>

@@ -48,25 +48,34 @@
   /* Global dark mode is disabled to enforce the game manual aesthetic 
      But we define it defensively to prevent white-on-white bugs if forced */
   .dark {
-    --background: 220 15% 15%;
-    --foreground: 42 35% 92%;
-    --card: 220 15% 20%;
-    --card-foreground: 42 35% 92%;
-    --popover: 220 15% 20%;
-    --popover-foreground: 42 35% 92%;
-    --primary: 350 70% 50%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 200 70% 45%;
+    /* Premium Developer Dark Theme */
+    --background: 240 10% 4%; /* Near black */
+    --foreground: 0 0% 98%; /* Crisp white text */
+    
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 217 91% 60%; /* Bright blue accent */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 6% 15%; /* Elevated dark grey */
     --secondary-foreground: 0 0% 98%;
-    --muted: 220 15% 25%;
-    --muted-foreground: 42 25% 75%;
-    --accent: 220 15% 25%;
-    --accent-foreground: 42 35% 92%;
-    --destructive: 0 80% 50%;
+
+    --muted: 240 5% 12%; 
+    --muted-foreground: 240 5% 65%; /* Soft text */
+
+    --accent: 217 91% 60%; 
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 42 35% 92%;
-    --input: 42 35% 92%;
-    --ring: 42 35% 92%;
+
+    --border: 240 6% 15%; /* Subtle borders */
+    --input: 240 6% 15%;
+    --ring: 217 91% 60%;
   }
 
   * {

@@ -168,7 +168,7 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
                         <img
                           src={project.cover_image}
                           alt={project.title}
-                          className="w-full aspect-[16/10] object-cover rounded border-2 border-border bg-card"
+                          className="w-full aspect-[16/10] object-contain rounded border-2 border-border bg-card"
                           loading="lazy"
                         />
                       ) : (
@@ -246,11 +246,11 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
               >
                 <div className="rpg-panel group flex h-full flex-col overflow-hidden bg-card hover:translate-y-[-4px] hover:shadow-[6px_6px_0px_hsl(var(--border))] transition-all">
                   {project.cover_image ? (
-                    <div className="h-48 overflow-hidden border-b-[3px] border-border bg-muted p-2">
+                    <div className="h-48 overflow-hidden border-b-[3px] border-border bg-muted p-2 flex items-center justify-center">
                       <img
                         src={project.cover_image}
                         alt={project.title}
-                        className="h-full w-full object-cover rounded border-2 border-border"
+                        className="h-full w-full rounded object-contain"
                         loading="lazy"
                       />
                     </div>
