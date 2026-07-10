@@ -42,7 +42,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="font-mono antialiased" suppressHydrationWarning>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <CustomCursor />
           <PageLoader>
             {children}

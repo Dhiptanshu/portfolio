@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { Code2, MapPin, Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { DoomModal } from "@/components/doom-modal";
 
 const links = [
   { label: "Experience", href: "#experience" },
@@ -11,17 +12,22 @@ const links = [
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Achievements", href: "#achievements" },
+  { label: "Doom", href: "#doom" },
   { label: "Contact", href: "#contact" },
 ];
 
 export function SiteNav({ resumeUrl, hiddenSections = [] }: { resumeUrl?: string, hiddenSections?: string[] }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isDoomOpen, setIsDoomOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 40);
+    if (latest < 150) {
+      setActiveSection("");
+    }
   });
 
   useEffect(() => {
@@ -33,15 +39,21 @@ export function SiteNav({ resumeUrl, hiddenSections = [] }: { resumeUrl?: string
           }
         });
       },
-      { rootMargin: "-30% 0px -60% 0px" }
+      { rootMargin: "-20% 0px -70% 0px" }
     );
 
-    links.forEach((link) => {
-      const el = document.getElementById(link.href.slice(1));
-      if (el) observer.observe(el);
-    });
+    // Timeout ensures DOM elements are rendered before observing
+    const timeout = setTimeout(() => {
+      links.forEach((link) => {
+        const el = document.getElementById(link.href.slice(1));
+        if (el) observer.observe(el);
+      });
+    }, 500);
 
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(timeout);
+      observer.disconnect();
+    };
   }, [hiddenSections]);
 
   return (
@@ -55,9 +67,9 @@ export function SiteNav({ resumeUrl, hiddenSections = [] }: { resumeUrl?: string
     >
       <div className={`mx-auto flex max-w-7xl items-center justify-between rpg-panel px-4 py-3 md:px-6 md:py-4 transition-all duration-300 ${scrolled ? 'bg-background/95 backdrop-blur shadow-[4px_4px_0px_hsl(var(--border))]' : ''}`}>
         
-        <a href="#" className="flex items-center gap-2 font-display text-sm md:text-base text-primary hover:scale-105 transition-transform uppercase">
-          <Code2 className="h-5 w-5 md:h-6 md:w-6" />
-          <span>Dhiptanshu <span className="text-foreground">Malik</span></span>
+        <a href="#" className="flex items-center gap-2 font-display text-sm md:text-base text-primary hover:scale-105 transition-transform uppercase truncate mr-2">
+          <Code2 className="h-5 w-5 md:h-6 md:w-6 shrink-0" />
+          <span className="truncate">Dhiptanshu <span className="text-foreground hidden sm:inline">Malik</span></span>
         </a>
         
         <nav className="hidden items-center gap-2 lg:flex bg-muted p-1 rounded-md border-2 border-border/50" aria-label="Main navigation">
@@ -67,6 +79,12 @@ export function SiteNav({ resumeUrl, hiddenSections = [] }: { resumeUrl?: string
               <a
                 key={link.href}
                 href={link.href}
+                onClick={(e) => {
+                  if (link.href === "#doom") {
+                    e.preventDefault();
+                    setIsDoomOpen(true);
+                  }
+                }}
                 className={`px-4 py-1.5 rounded text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
                   isActive
                     ? "bg-card text-foreground shadow-[2px_2px_0px_hsl(var(--border))] border border-border"
@@ -85,7 +103,7 @@ export function SiteNav({ resumeUrl, hiddenSections = [] }: { resumeUrl?: string
             href={resumeUrl || "/resume.pdf"}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:flex rpg-panel rpg-panel-interactive px-4 py-2 text-xs font-bold uppercase tracking-wider text-foreground bg-accent items-center gap-2"
+            className="hidden sm:flex rpg-panel rpg-panel-interactive px-4 py-2 text-xs font-bold uppercase tracking-wider text-primary bg-transparent border-2 border-primary hover:bg-primary/10 items-center gap-2"
           >
             <MapPin className="h-3 w-3" />
             Resume
@@ -114,7 +132,13 @@ export function SiteNav({ resumeUrl, hiddenSections = [] }: { resumeUrl?: string
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    if (link.href === "#doom") {
+                      e.preventDefault();
+                      setIsDoomOpen(true);
+                    }
+                    setMobileMenuOpen(false);
+                  }}
                   className={`px-4 py-3 rounded font-bold uppercase tracking-wider transition-all duration-200 ${
                     isActive
                       ? "bg-muted text-foreground shadow-[2px_2px_0px_hsl(var(--border))] border border-border"
@@ -129,13 +153,16 @@ export function SiteNav({ resumeUrl, hiddenSections = [] }: { resumeUrl?: string
               href={resumeUrl || "/resume.pdf"}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 flex rpg-panel rpg-panel-interactive px-4 py-3 text-sm font-bold uppercase tracking-wider text-foreground bg-accent items-center justify-center gap-2"
+              className="mt-2 flex rpg-panel rpg-panel-interactive px-4 py-3 text-sm font-bold uppercase tracking-wider text-primary bg-transparent border-2 border-primary hover:bg-primary/10 items-center justify-center gap-2"
             >
               <MapPin className="h-4 w-4" />
               Resume
             </a>
           </motion.div>
         )}
+      </AnimatePresence>
+      <AnimatePresence>
+        <DoomModal isOpen={isDoomOpen} onClose={() => setIsDoomOpen(false)} />
       </AnimatePresence>
     </motion.header>
   );

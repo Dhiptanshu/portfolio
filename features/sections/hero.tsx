@@ -92,12 +92,12 @@ export function HeroSection({ socials = [], heroData }: { socials?: SocialLink[]
                   {data.title}
                 </h1>
                 
-                <p className="text-lg font-medium text-muted-foreground bg-muted p-4 rounded border border-border/50 shadow-inner mb-6">
+                <p className="text-lg font-medium text-muted-foreground bg-muted p-4 mb-6 rpg-panel">
                   {data.subtitle}
                 </p>
 
                 {(data.college_name || data.cgpa) && (
-                  <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8 bg-background border-2 border-border p-3 rounded shadow-[2px_2px_0px_hsl(var(--border))]">
+                  <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8 bg-background p-3 rpg-panel">
                     <div className="p-2 bg-primary/10 text-primary rounded border border-primary/20">
                       <GraduationCap className="w-5 h-5" />
                     </div>
@@ -163,13 +163,13 @@ export function HeroSection({ socials = [], heroData }: { socials?: SocialLink[]
             {data.stats.map((stat: any, idx: number) => {
               const Icon = Icons[stat.icon] || Swords;
               return (
-                <div key={idx} className="flex items-center gap-4 p-4 rounded-md bg-background border-2 border-border shadow-[2px_2px_0px_hsl(var(--border))]">
-                  <div className="p-2 bg-secondary text-secondary-foreground rounded border-2 border-border">
-                    <Icon className="w-5 h-5" />
+                <div key={idx} className="flex items-center gap-2 sm:gap-4 p-2 sm:p-4 rounded-md bg-background border-2 border-border shadow-[2px_2px_0px_hsl(var(--border))]">
+                  <div className="shrink-0 p-1.5 sm:p-2 bg-secondary text-secondary-foreground rounded border-2 border-border">
+                    <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <div>
-                    <div className="font-bold text-xl text-foreground">{stat.value}</div>
-                    <div className="text-[10px] font-bold uppercase text-muted-foreground tracking-wider">{stat.label}</div>
+                  <div className="min-w-0 flex-1">
+                    <div className="font-bold text-lg sm:text-xl text-foreground truncate">{stat.value}</div>
+                    <div className="text-[8px] sm:text-[10px] font-bold uppercase text-muted-foreground tracking-widest sm:tracking-wider leading-tight sm:leading-normal break-words break-all sm:break-normal">{stat.label}</div>
                   </div>
                 </div>
               );

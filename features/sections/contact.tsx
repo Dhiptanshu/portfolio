@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Save, ArrowRight, Globe, Link as LinkIcon, MessageCircle } from "lucide-react";
+import pkg from "../../package.json";
 import type { SocialLink } from "@/lib/types";
 import { ContactForm } from "./contact-form";
 import { SocialIcon } from "@/components/social-icon";
@@ -128,7 +129,7 @@ export function ContactSection({ socials, contactOptions = [] }: { socials: Soci
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-            Version 1.0.0 · © {new Date().getFullYear()} Dhiptanshu Malik
+            Version {pkg.version} · © {new Date().getFullYear()} Dhiptanshu Malik
           </p>
         </motion.div>
       </div>

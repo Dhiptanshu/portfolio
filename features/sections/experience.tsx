@@ -147,11 +147,11 @@ function ExperienceModal({ exp, onClose }: { exp: Experience; onClose: () => voi
                   <h3 className="font-black text-xl mb-4 uppercase tracking-widest text-primary">Media Gallery</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {exp.media_gallery.map((media, i) => (
-                      <div key={i} className="relative aspect-video rounded border-2 border-border overflow-hidden bg-muted flex items-center justify-center group shadow-[2px_2px_0px_hsl(var(--border))]">
+                      <div key={i} className="relative rounded border-2 border-border overflow-hidden bg-muted group shadow-[2px_2px_0px_hsl(var(--border))]">
                         {media.type === 'image' || media.url.match(/\.(jpeg|jpg|gif|png|webp|svg)$/i) ? (
-                          <img src={media.url} alt={media.title || 'Gallery image'} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+                          <img src={media.url} alt={media.title || 'Gallery image'} className="w-full h-auto object-contain block hover:scale-105 transition-transform duration-300" />
                         ) : media.type === 'video' || media.url.match(/\.(mp4|webm|ogg)$/i) ? (
-                          <video src={media.url} controls className="w-full h-full object-cover" />
+                          <video src={media.url} controls className="w-full h-auto object-contain block" />
                         ) : media.type === 'pdf' || media.url.match(/\.pdf$/i) ? (
                           <a href={media.url} target="_blank" rel="noreferrer" className="w-full h-full flex flex-col items-center justify-center text-muted-foreground hover:bg-background transition-colors hover:text-foreground">
                             <span className="text-sm font-bold uppercase tracking-widest">{media.title || 'View PDF'}</span>

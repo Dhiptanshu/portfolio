@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide custom cursor when Doom is open */
+body.doom-open, body.doom-open * {
+  cursor: auto !important;
+}
+body.doom-open .custom-cursor-element {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
 @layer base {
   :root {
     /* ── Light Theme: The Printed Manual ── */
@@ -32,6 +41,8 @@
     --border: 220 15% 20%;
     --input: 220 15% 20%;
     --ring: 220 15% 20%;
+    
+    --panel-shadow: 220 15% 20%;
     
     --radius: 0.5rem;
   }
@@ -65,6 +76,8 @@
     --border: 40 20% 88%;
     --input: 270 15% 14%;
     --ring: 42 88% 58%;
+    
+    --panel-shadow: 270 20% 0%;
   }
 
   * {
@@ -113,7 +126,7 @@
 .rpg-panel {
   border: 3px solid hsl(var(--border));
   border-radius: var(--radius);
-  box-shadow: 4px 4px 0px hsl(var(--border));
+  box-shadow: 4px 4px 0px hsl(var(--panel-shadow));
   transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s ease;
 }
 
