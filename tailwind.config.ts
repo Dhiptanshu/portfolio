@@ -43,8 +43,8 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)"
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "Inter", "ui-sans-serif", "system-ui"],
-        serif: ["var(--font-serif)", "Cormorant Garamond", "Georgia", "serif"]
+        mono: ["var(--font-mono)", "IBM Plex Mono", "ui-monospace", "monospace"],
+        display: ["var(--font-display)", "Bungee", "Impact", "sans-serif"]
       },
       fontSize: {
         "display-lg": ["clamp(3rem, 7vw, 6rem)", { lineHeight: "1.08", letterSpacing: "-0.02em" }],

@@ -64,7 +64,7 @@ export function AchievementsSection({ data }: { data: AchievementData }) {
           </div>
           <div>
             <p className="font-bold uppercase tracking-widest text-primary text-xs">Achievements</p>
-            <h2 className="font-bold text-3xl md:text-5xl text-foreground">
+            <h2 className="font-display text-3xl md:text-5xl text-foreground uppercase">
               Certificates & Awards
             </h2>
           </div>

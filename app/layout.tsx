@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Bungee, IBM_Plex_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CustomCursor } from "@/components/custom-cursor";
+import { PageLoader } from "@/components/page-loader";
 
-const cormorant = Cormorant_Garamond({
+const bungee = Bungee({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-serif",
+  weight: ["400"],
+  variable: "--font-display",
   display: "swap",
 });
 
-const inter = Inter({
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-sans",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -36,13 +38,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${inter.variable}`}
+      className={`${bungee.variable} ${ibmPlexMono.variable}`}
       suppressHydrationWarning
     >
-      <body className="font-sans antialiased" suppressHydrationWarning>
+      <body className="font-mono antialiased" suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <CustomCursor />
-          {children}
+          <PageLoader>
+            {children}
+          </PageLoader>
           <Toaster richColors position="top-center" />
         </ThemeProvider>
       </body>

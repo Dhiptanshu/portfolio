@@ -34,7 +34,7 @@ export function SiteNav({ resumeUrl, hiddenSections = [] }: { resumeUrl?: string
     >
       <div className={`mx-auto flex max-w-7xl items-center justify-between rpg-panel px-4 py-3 md:px-6 md:py-4 transition-all duration-300 ${scrolled ? 'bg-background/95 backdrop-blur shadow-[4px_4px_0px_hsl(var(--border))]' : ''}`}>
         
-        <a href="#" className="flex items-center gap-2 font-bold text-lg md:text-xl text-primary hover:scale-105 transition-transform">
+        <a href="#" className="flex items-center gap-2 font-display text-sm md:text-base text-primary hover:scale-105 transition-transform uppercase">
           <Code2 className="h-5 w-5 md:h-6 md:w-6" />
           <span>Dhiptanshu <span className="text-foreground">Malik</span></span>
         </a>

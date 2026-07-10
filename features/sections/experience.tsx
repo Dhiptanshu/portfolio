@@ -131,7 +131,7 @@ function ExperienceModal({ exp, onClose }: { exp: Experience; onClose: () => voi
               <span className="inline-block px-3 py-1 rounded bg-secondary text-secondary-foreground text-[10px] font-bold uppercase tracking-widest border-2 border-border shadow-[2px_2px_0px_hsl(var(--border))] mb-4">
                 {exp.employment_type}
               </span>
-              <h1 className="font-bold text-3xl md:text-5xl text-foreground mb-5 leading-tight">
+              <h1 className="font-display text-3xl md:text-5xl text-foreground mb-5 leading-tight uppercase">
                 {exp.role}
               </h1>
               <div className="text-xl font-bold text-muted-foreground mb-8">

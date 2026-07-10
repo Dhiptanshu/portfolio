@@ -47,7 +47,7 @@ export function SkillsSection({ graph }: { graph: SkillGraphData }) {
         >
           <div>
             <p className="font-bold uppercase tracking-widest text-primary text-xs mb-2">Technical Index</p>
-            <h2 className="font-bold text-4xl md:text-5xl text-foreground tracking-tight flex items-center gap-4">
+            <h2 className="font-display text-4xl md:text-5xl text-foreground tracking-tight flex items-center gap-4 uppercase">
                Skills
             </h2>
           </div>

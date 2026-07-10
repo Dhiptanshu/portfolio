@@ -4,77 +4,67 @@
 
 @layer base {
   :root {
-    /* ── Retro Adventure Manual Palette ── */
+    /* ── Light Theme: The Printed Manual ── */
+    --background: 42 35% 92%;
+    --foreground: 220 15% 20%;
     
-    /* Base Page Colors */
-    --background: 42 35% 92%; /* Warm parchment */
-    --foreground: 220 15% 20%; /* Dark slate ink */
-    
-    /* Panels, Modals, Cards */
-    --card: 42 35% 95%; /* Slightly lighter parchment */
+    --card: 42 35% 95%;
     --card-foreground: 220 15% 20%;
     
     --popover: 42 35% 95%;
     --popover-foreground: 220 15% 20%;
 
-    /* Primary Action (Red) */
     --primary: 350 70% 50%;
-    --primary-foreground: 0 0% 98%; /* White text ensures readable contrast */
+    --primary-foreground: 0 0% 98%;
 
-    /* Secondary Action (Blue) */
     --secondary: 200 70% 45%;
     --secondary-foreground: 0 0% 98%;
 
-    /* Muted / Disabled States */
-    --muted: 42 25% 85%; /* Darker parchment for inactive/disabled */
-    --muted-foreground: 220 15% 45%; /* Grey ink */
+    --muted: 42 25% 85%;
+    --muted-foreground: 220 15% 45%;
 
-    /* Accent / Hover States (Used globally by UI libraries for active/hover) */
-    --accent: 42 30% 85%; /* Solid tinted background for hover/active */
-    --accent-foreground: 220 20% 15%; /* Solid dark text for active items */
+    --accent: 42 30% 85%;
+    --accent-foreground: 220 20% 15%;
 
-    /* Destructive States */
     --destructive: 0 80% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    /* Structural & Focus Elements */
-    --border: 220 15% 20%; /* Thick dark borders everywhere */
+    --border: 220 15% 20%;
     --input: 220 15% 20%;
-    --ring: 220 15% 20%; /* Clear, dark focus rings for accessibility */
+    --ring: 220 15% 20%;
     
     --radius: 0.5rem;
   }
 
-  /* Global dark mode is disabled to enforce the game manual aesthetic 
-     But we define it defensively to prevent white-on-white bugs if forced */
+  /* ── Dark Theme: The Save File (CRT at Night) ── */
   .dark {
-    --background: 240 10% 4%;
-    --foreground: 0 0% 98%;
+    --background: 270 20% 7%;
+    --foreground: 40 20% 88%;
     
-    --card: 240 10% 6%;
-    --card-foreground: 0 0% 98%;
+    --card: 270 18% 10%;
+    --card-foreground: 40 20% 88%;
     
-    --popover: 240 10% 6%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 270 18% 10%;
+    --popover-foreground: 40 20% 88%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 42 88% 58%;
+    --primary-foreground: 270 20% 7%;
 
-    --secondary: 240 6% 15%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 150 45% 55%;
+    --secondary-foreground: 270 20% 7%;
 
-    --muted: 240 5% 12%; 
-    --muted-foreground: 240 5% 65%;
+    --muted: 270 15% 14%;
+    --muted-foreground: 270 10% 55%;
 
-    --accent: 217 91% 60%; 
-    --accent-foreground: 0 0% 100%;
+    --accent: 42 88% 58%;
+    --accent-foreground: 270 20% 7%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 80% 55%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 6% 15%;
-    --input: 240 6% 15%;
-    --ring: 217 91% 60%;
+    --border: 40 20% 88%;
+    --input: 270 15% 14%;
+    --ring: 42 88% 58%;
   }
 
   * {
@@ -88,7 +78,13 @@
       radial-gradient(circle at 0% 100%, rgba(200, 180, 150, 0.15) 0%, transparent 40%);
   }
 
-  /* Accessibility: Consistent focus rings globally */
+  .dark body,
+  :is(.dark) body {
+    background-image: 
+      radial-gradient(circle at 100% 0%, rgba(242, 182, 50, 0.04) 0%, transparent 40%),
+      radial-gradient(circle at 0% 100%, rgba(94, 184, 140, 0.04) 0%, transparent 40%);
+  }
+
   *:focus-visible {
     outline: 3px solid hsl(var(--ring));
     outline-offset: 2px;
@@ -96,6 +92,17 @@
 
   html {
     scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
@@ -111,11 +118,10 @@
 }
 
 .rpg-panel-interactive {
-  cursor: pointer;
+  cursor: none;
 }
 
 .rpg-panel-interactive:hover:not(:disabled) {
-  filter: brightness(0.95);
   transform: translate(-1px, -1px);
   box-shadow: 5px 5px 0px hsl(var(--border));
 }
@@ -140,8 +146,9 @@
 }
 
 .area-title {
-  font-family: var(--font-serif);
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
   text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
 }
 
@@ -162,4 +169,21 @@
     linear-gradient(rgba(30, 41, 59, 0.04) 2px, transparent 2px),
     linear-gradient(90deg, rgba(30, 41, 59, 0.04) 2px, transparent 2px);
   background-size: 64px 64px;
+}
+
+:is(.dark) .world-map-grid {
+  background-image:
+    linear-gradient(rgba(228, 220, 206, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(228, 220, 206, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Hide default cursor on desktop when custom cursor is active */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a, button, .rpg-panel-interactive {
+    cursor: none;
+  }
 }

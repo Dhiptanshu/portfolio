@@ -28,7 +28,7 @@ export function ContactSection({ socials, contactOptions = [] }: { socials: Soci
           <div className="inline-flex items-center justify-center p-4 bg-primary text-primary-foreground rounded-full border-4 border-border shadow-[4px_4px_0px_hsl(var(--border))] mb-6">
             <Save className="w-8 h-8" />
           </div>
-          <h2 className="font-bold text-4xl md:text-5xl text-foreground uppercase tracking-tight drop-shadow-sm">
+          <h2 className="font-display text-4xl md:text-5xl text-foreground uppercase tracking-tight">
             Main Menu
           </h2>
           <p className="mt-4 text-lg font-bold text-muted-foreground max-w-lg mx-auto">

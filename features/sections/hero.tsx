@@ -88,7 +88,7 @@ export function HeroSection({ socials = [], heroData }: { socials?: SocialLink[]
                   {data.class_name}
                 </div>
                 
-                <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight mb-2 drop-shadow-sm">
+                <h1 className="text-4xl md:text-6xl font-display text-foreground tracking-tight mb-2 uppercase">
                   {data.title}
                 </h1>
                 

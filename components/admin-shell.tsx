@@ -21,7 +21,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-background">
       <aside className="fixed inset-y-0 left-0 hidden w-56 border-r border-border bg-card/50 p-5 backdrop-blur lg:flex lg:flex-col">
         <div>
-          <Link href="/admin" className="font-serif text-lg text-primary">Dhiptanshu.</Link>
+          <Link href="/admin" className="font-display text-lg text-primary uppercase">Dhiptanshu.</Link>
           <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Admin Panel</p>
           <nav className="mt-8 grid gap-0.5" aria-label="Admin navigation">
             {nav.map((item) => (
@@ -47,7 +47,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       </aside>
       <main className="lg:pl-56">
         <header className="flex items-center justify-between border-b border-border bg-card/50 px-4 py-3 backdrop-blur lg:hidden">
-          <Link href="/admin" className="font-serif text-lg text-primary">Dhiptanshu.</Link>
+          <Link href="/admin" className="font-display text-lg text-primary uppercase">Dhiptanshu.</Link>
           <AdminLogoutButton />
         </header>
         <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">{children}</div>
