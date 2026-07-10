@@ -1,40 +1,43 @@
 "use client";
 
-import { useEffect, useState, useRef, useCallback } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-
-type ReticleTarget = {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-};
+import { useEffect, useState, useRef } from "react";
+import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 
 const CORNER_SIZE = 10;
 const CORNER_THICKNESS = 2;
-const PADDING = 4;
+const PADDING = 6;
 const FREE_SIZE = 28;
 
 export function CustomCursor() {
-  const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
-  const [target, setTarget] = useState<ReticleTarget | null>(null);
   const [isTouch, setIsTouch] = useState(true);
-  const rafRef = useRef<number>(0);
   const prefersReduced = useReducedMotion();
 
-  const updateTarget = useCallback((el: HTMLElement | null) => {
-    if (!el) {
-      setTarget(null);
-      return;
-    }
-    const rect = el.getBoundingClientRect();
-    setTarget({
-      x: rect.left - PADDING,
-      y: rect.top - PADDING,
-      width: rect.width + PADDING * 2,
-      height: rect.height + PADDING * 2,
-    });
-  }, []);
+  // Mouse positions (raw)
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
+
+  // Rectangle target dimensions
+  const rectX = useMotionValue(-100);
+  const rectY = useMotionValue(-100);
+  const rectW = useMotionValue(FREE_SIZE);
+  const rectH = useMotionValue(FREE_SIZE);
+  
+  // Opacity of center dot
+  const dotOpacity = useMotionValue(1);
+
+  // Springs for smooth movement
+  const springConfig = { stiffness: 450, damping: 28, mass: 0.4 };
+  const dotSpringConfig = { stiffness: 600, damping: 30, mass: 0.2 };
+
+  const x = useSpring(rectX, springConfig);
+  const y = useSpring(rectY, springConfig);
+  const w = useSpring(rectW, springConfig);
+  const h = useSpring(rectH, springConfig);
+
+  const dotX = useSpring(mouseX, dotSpringConfig);
+  const dotY = useSpring(mouseY, dotSpringConfig);
+
+  const activeElementRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (window.matchMedia("(pointer: coarse)").matches) {
@@ -43,13 +46,24 @@ export function CustomCursor() {
     }
     setIsTouch(false);
 
-    let currentHovered: HTMLElement | null = null;
-
     const onMouseMove = (e: MouseEvent) => {
-      cancelAnimationFrame(rafRef.current);
-      rafRef.current = requestAnimationFrame(() => {
-        setMousePos({ x: e.clientX, y: e.clientY });
-      });
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+
+      // If we're not hovering an interactive element, center the bounding box on the mouse
+      if (!activeElementRef.current) {
+        rectX.set(e.clientX - FREE_SIZE / 2);
+        rectY.set(e.clientY - FREE_SIZE / 2);
+      }
+    };
+
+    const updateSnapping = (el: HTMLElement) => {
+      const rect = el.getBoundingClientRect();
+      rectX.set(rect.left - PADDING);
+      rectY.set(rect.top - PADDING);
+      rectW.set(rect.width + PADDING * 2);
+      rectH.set(rect.height + PADDING * 2);
+      dotOpacity.set(0); // Hide center dot when snapped
     };
 
     const onMouseOver = (e: MouseEvent) => {
@@ -61,17 +75,21 @@ export function CustomCursor() {
         t.closest(".rpg-panel-interactive");
 
       if (interactive instanceof HTMLElement) {
-        currentHovered = interactive;
-        updateTarget(interactive);
+        activeElementRef.current = interactive;
+        updateSnapping(interactive);
       } else {
-        currentHovered = null;
-        setTarget(null);
+        activeElementRef.current = null;
+        rectW.set(FREE_SIZE);
+        rectH.set(FREE_SIZE);
+        rectX.set(e.clientX - FREE_SIZE / 2);
+        rectY.set(e.clientY - FREE_SIZE / 2);
+        dotOpacity.set(1);
       }
     };
 
     const onScroll = () => {
-      if (currentHovered) {
-        updateTarget(currentHovered);
+      if (activeElementRef.current) {
+        updateSnapping(activeElementRef.current);
       }
     };
 
@@ -80,102 +98,77 @@ export function CustomCursor() {
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
-      cancelAnimationFrame(rafRef.current);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseover", onMouseOver);
       window.removeEventListener("scroll", onScroll);
     };
-  }, [updateTarget]);
+  }, [mouseX, mouseY, rectX, rectY, rectW, rectH, dotOpacity]);
 
   if (isTouch || prefersReduced) return null;
 
-  const springSnap = { type: "spring" as const, stiffness: 500, damping: 35, mass: 0.4 };
-  const springFree = { type: "spring" as const, stiffness: 300, damping: 20, mass: 0.3 };
-
-  const cornerStyle = {
-    position: "fixed" as const,
-    pointerEvents: "none" as const,
-    zIndex: 9999,
-    width: CORNER_SIZE,
-    height: CORNER_SIZE,
-  };
-
-  if (target) {
-    // Snapped to element
-    const corners = [
-      { x: target.x, y: target.y, borderTop: CORNER_THICKNESS, borderLeft: CORNER_THICKNESS },
-      { x: target.x + target.width - CORNER_SIZE, y: target.y, borderTop: CORNER_THICKNESS, borderRight: CORNER_THICKNESS },
-      { x: target.x, y: target.y + target.height - CORNER_SIZE, borderBottom: CORNER_THICKNESS, borderLeft: CORNER_THICKNESS },
-      { x: target.x + target.width - CORNER_SIZE, y: target.y + target.height - CORNER_SIZE, borderBottom: CORNER_THICKNESS, borderRight: CORNER_THICKNESS },
-    ];
-
-    return (
-      <>
-        {corners.map((c, i) => (
-          <motion.div
-            key={i}
-            className="hidden md:block"
-            style={{
-              ...cornerStyle,
-              borderColor: "hsl(var(--primary))",
-              borderStyle: "solid",
-              borderWidth: 0,
-              borderTopWidth: c.borderTop || 0,
-              borderRightWidth: c.borderRight || 0,
-              borderBottomWidth: c.borderBottom || 0,
-              borderLeftWidth: c.borderLeft || 0,
-            }}
-            animate={{ x: c.x, y: c.y }}
-            transition={springSnap}
-          />
-        ))}
-      </>
-    );
-  }
-
-  // Free-floating reticle around cursor
-  const half = FREE_SIZE / 2;
-  const freeCorners = [
-    { x: mousePos.x - half, y: mousePos.y - half, borderTop: CORNER_THICKNESS, borderLeft: CORNER_THICKNESS },
-    { x: mousePos.x + half - CORNER_SIZE, y: mousePos.y - half, borderTop: CORNER_THICKNESS, borderRight: CORNER_THICKNESS },
-    { x: mousePos.x - half, y: mousePos.y + half - CORNER_SIZE, borderBottom: CORNER_THICKNESS, borderLeft: CORNER_THICKNESS },
-    { x: mousePos.x + half - CORNER_SIZE, y: mousePos.y + half - CORNER_SIZE, borderBottom: CORNER_THICKNESS, borderRight: CORNER_THICKNESS },
-  ];
-
   return (
     <>
-      {freeCorners.map((c, i) => (
-        <motion.div
-          key={i}
-          className="hidden md:block"
-          style={{
-            ...cornerStyle,
-            borderColor: "hsl(var(--primary))",
-            borderStyle: "solid",
-            borderWidth: 0,
-            borderTopWidth: c.borderTop || 0,
-            borderRightWidth: c.borderRight || 0,
-            borderBottomWidth: c.borderBottom || 0,
-            borderLeftWidth: c.borderLeft || 0,
-          }}
-          animate={{ x: c.x, y: c.y }}
-          transition={springFree}
-        />
-      ))}
-      {/* Crosshair dot */}
+      {/* Target Reticle Container */}
       <motion.div
-        className="hidden md:block"
+        className="fixed top-0 left-0 pointer-events-none z-[9999] hidden md:block"
         style={{
-          position: "fixed",
-          pointerEvents: "none",
-          zIndex: 9999,
-          width: 3,
-          height: 3,
-          borderRadius: "50%",
-          backgroundColor: "hsl(var(--primary))",
+          x,
+          y,
+          width: w,
+          height: h,
         }}
-        animate={{ x: mousePos.x - 1.5, y: mousePos.y - 1.5 }}
-        transition={springFree}
+      >
+        {/* Top-Left Corner */}
+        <div
+          className="absolute top-0 left-0 border-t-2 border-l-2"
+          style={{
+            width: CORNER_SIZE,
+            height: CORNER_SIZE,
+            borderColor: "hsl(var(--primary))",
+          }}
+        />
+        {/* Top-Right Corner */}
+        <div
+          className="absolute top-0 right-0 border-t-2 border-r-2"
+          style={{
+            width: CORNER_SIZE,
+            height: CORNER_SIZE,
+            borderColor: "hsl(var(--primary))",
+          }}
+        />
+        {/* Bottom-Left Corner */}
+        <div
+          className="absolute bottom-0 left-0 border-b-2 border-l-2"
+          style={{
+            width: CORNER_SIZE,
+            height: CORNER_SIZE,
+            borderColor: "hsl(var(--primary))",
+          }}
+        />
+        {/* Bottom-Right Corner */}
+        <div
+          className="absolute bottom-0 right-0 border-b-2 border-r-2"
+          style={{
+            width: CORNER_SIZE,
+            height: CORNER_SIZE,
+            borderColor: "hsl(var(--primary))",
+          }}
+        />
+      </motion.div>
+
+      {/* Center Crosshair Dot */}
+      <motion.div
+        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9999] hidden md:block"
+        style={{
+          x: dotX,
+          y: dotY,
+          width: 4,
+          height: 4,
+          marginLeft: -2,
+          marginTop: -2,
+          backgroundColor: "hsl(var(--primary))",
+          opacity: dotOpacity,
+        }}
       />
     </>
   );

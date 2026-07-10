@@ -72,7 +72,7 @@ export function HeroSection({ socials = [], heroData }: { socials?: SocialLink[]
               ) : (
                 <Gamepad2 className="w-16 h-16 text-muted-foreground opacity-50" />
               )}
-              <div className="absolute -bottom-2 -right-2 z-10 rpg-badge px-3 py-1 bg-accent text-accent-foreground text-sm border-2 border-border rotate-3 shadow-[2px_2px_0px_hsl(var(--border))]">
+              <div className="absolute -bottom-2 -right-2 z-10 rpg-badge px-3 py-1 bg-muted text-muted-foreground text-sm border-2 border-border/80 rotate-3 shadow-[2px_2px_0px_hsl(var(--border))]">
                 {data.level}
               </div>
             </motion.div>
@@ -108,7 +108,7 @@ export function HeroSection({ socials = [], heroData }: { socials?: SocialLink[]
                       <span className="text-muted-foreground hidden md:inline">•</span>
                     )}
                     {data.cgpa && (
-                      <span className="text-sm font-bold bg-accent text-accent-foreground px-2 py-0.5 rounded border border-border">
+                      <span className="text-sm font-bold bg-muted text-muted-foreground px-2 py-0.5 rounded border border-border/80">
                         CGPA: {data.cgpa}
                       </span>
                     )}
@@ -123,10 +123,10 @@ export function HeroSection({ socials = [], heroData }: { socials?: SocialLink[]
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
-                {!(data.hidden_sections || []).includes('journey') && (
+                 {!(data.hidden_sections || []).includes('journey') && (
                   <a
                     href="#journey"
-                    className="rpg-panel rpg-panel-interactive bg-primary text-primary-foreground px-6 py-3 font-bold uppercase tracking-wider text-sm flex items-center gap-2"
+                    className="rpg-panel rpg-panel-interactive bg-transparent border-2 border-primary text-primary hover:bg-primary/10 px-6 py-3 font-bold uppercase tracking-wider text-sm flex items-center gap-2"
                   >
                     <Swords className="w-4 h-4" /> View Journey
                   </a>
@@ -134,7 +134,7 @@ export function HeroSection({ socials = [], heroData }: { socials?: SocialLink[]
                 {!(data.hidden_sections || []).includes('projects') && (
                   <a
                     href="#projects"
-                    className="rpg-panel rpg-panel-interactive bg-card text-foreground px-6 py-3 font-bold uppercase tracking-wider text-sm flex items-center gap-2"
+                    className="rpg-panel rpg-panel-interactive bg-primary text-primary-foreground px-6 py-3 font-bold uppercase tracking-wider text-sm flex items-center gap-2"
                   >
                     <ScrollText className="w-4 h-4" /> View Projects
                   </a>
@@ -144,7 +144,7 @@ export function HeroSection({ socials = [], heroData }: { socials?: SocialLink[]
                     href={data.resume_url}
                     target="_blank"
                     rel="noreferrer"
-                    className="rpg-panel rpg-panel-interactive bg-accent text-accent-foreground px-6 py-3 font-bold uppercase tracking-wider text-sm flex items-center gap-2"
+                    className="rpg-panel rpg-panel-interactive bg-transparent border-2 border-primary text-primary hover:bg-primary/10 px-6 py-3 font-bold uppercase tracking-wider text-sm flex items-center gap-2"
                   >
                     <ScrollText className="w-4 h-4" /> Resume
                   </a>
