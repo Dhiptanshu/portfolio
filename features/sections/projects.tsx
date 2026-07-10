@@ -203,7 +203,7 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
                         <img
                           src={project.cover_image}
                           alt={project.title}
-                          className="w-full aspect-[16/10] object-contain rounded border-2 border-border bg-card"
+                          className="w-full h-auto object-cover rounded border-2 border-border"
                           loading="lazy"
                         />
                       ) : (
@@ -289,11 +289,11 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
                     style={{ borderLeftColor }}
                   >
                   {project.cover_image ? (
-                    <div className="h-48 overflow-hidden border-b-[3px] border-border bg-muted p-2 flex items-center justify-center">
+                    <div className="h-48 overflow-hidden border-b-[3px] border-border bg-muted flex items-center justify-center">
                       <img
                         src={project.cover_image}
                         alt={project.title}
-                        className="h-full w-full rounded object-contain"
+                        className="h-full w-full object-cover"
                         loading="lazy"
                       />
                     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { Code2, MapPin, Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -17,11 +17,32 @@ const links = [
 export function SiteNav({ resumeUrl, hiddenSections = [] }: { resumeUrl?: string, hiddenSections?: string[] }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 40);
   });
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-30% 0px -60% 0px" }
+    );
+
+    links.forEach((link) => {
+      const el = document.getElementById(link.href.slice(1));
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [hiddenSections]);
 
   return (
     <motion.header
@@ -40,15 +61,22 @@ export function SiteNav({ resumeUrl, hiddenSections = [] }: { resumeUrl?: string
         </a>
         
         <nav className="hidden items-center gap-2 lg:flex bg-muted p-1 rounded-md border-2 border-border/50" aria-label="Main navigation">
-          {links.filter(l => !hiddenSections.includes(l.label.toLowerCase())).map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="px-4 py-1.5 rounded text-xs font-bold uppercase tracking-wider text-muted-foreground transition-all duration-200 hover:bg-card hover:text-foreground hover:shadow-[2px_2px_0px_hsl(var(--border))]"
-            >
-              {link.label}
-            </a>
-          ))}
+          {links.filter(l => !hiddenSections.includes(l.label.toLowerCase())).map((link) => {
+            const isActive = activeSection === link.href.slice(1);
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`px-4 py-1.5 rounded text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
+                  isActive
+                    ? "bg-card text-foreground shadow-[2px_2px_0px_hsl(var(--border))] border border-border"
+                    : "text-muted-foreground hover:bg-card hover:text-foreground hover:shadow-[2px_2px_0px_hsl(var(--border))]"
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </nav>
         
         <div className="flex items-center gap-2 md:gap-4">
@@ -80,16 +108,23 @@ export function SiteNav({ resumeUrl, hiddenSections = [] }: { resumeUrl?: string
             exit={{ opacity: 0, y: -20 }}
             className="lg:hidden absolute top-[110%] left-4 right-4 rpg-panel bg-card p-4 shadow-xl flex flex-col gap-2"
           >
-            {links.filter(l => !hiddenSections.includes(l.label.toLowerCase())).map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-3 rounded font-bold uppercase tracking-wider text-muted-foreground transition-all duration-200 hover:bg-muted hover:text-foreground hover:shadow-[2px_2px_0px_hsl(var(--border))]"
-              >
-                {link.label}
-              </a>
-            ))}
+            {links.filter(l => !hiddenSections.includes(l.label.toLowerCase())).map((link) => {
+              const isActive = activeSection === link.href.slice(1);
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`px-4 py-3 rounded font-bold uppercase tracking-wider transition-all duration-200 ${
+                    isActive
+                      ? "bg-muted text-foreground shadow-[2px_2px_0px_hsl(var(--border))] border border-border"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground hover:shadow-[2px_2px_0px_hsl(var(--border))]"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
             <a
               href={resumeUrl || "/resume.pdf"}
               target="_blank"
