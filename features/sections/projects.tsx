@@ -45,9 +45,11 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
   const [activeTag, setActiveTag] = useState("all");
   const [viewMode, setViewMode] = useState<"grid" | "case-study">("case-study");
   const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
+  const [mounted, setMounted] = useState(false);
+  const isDark = mounted && resolvedTheme === "dark";
 
   useEffect(() => {
+    setMounted(true);
     const saved = localStorage.getItem("portfolio-project-view");
     if (saved === "grid" || saved === "case-study") {
       setViewMode(saved);
