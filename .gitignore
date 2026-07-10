@@ -14,3 +14,7 @@ pnpm-debug.log*
 
 # Supabase
 supabase/
+
+# IDE and AI Agents
+.vscode/
+.agents/
