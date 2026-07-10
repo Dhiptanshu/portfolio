@@ -12,6 +12,29 @@ import { ExperienceSection } from "@/features/sections/experience";
 
 export const revalidate = 60;
 
+export async function generateMetadata() {
+  const supabase = await createSupabaseServerClient();
+  let className = "Engineer & Builder";
+  
+  if (supabase) {
+    const { data: heroBlock } = await supabase
+      .from("blocks")
+      .select("content")
+      .eq("type", "hero")
+      .single();
+    if (heroBlock?.content?.class_name) {
+      className = heroBlock.content.class_name;
+    }
+  }
+
+  return {
+    title: `Dhiptanshu Malik — ${className}`,
+    openGraph: {
+      title: `Dhiptanshu Malik — ${className}`,
+    }
+  };
+}
+
 export default async function HomePage() {
   const supabase = await createSupabaseServerClient();
   if (!supabase) return null;
