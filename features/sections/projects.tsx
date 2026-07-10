@@ -353,7 +353,8 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
                   </div>
                 </div>
               </motion.div>
-            ))}
+            );
+          })}
           </div>
         )}
 
