@@ -37,7 +37,16 @@ export async function generateMetadata() {
 
 export default async function HomePage() {
   const supabase = await createSupabaseServerClient();
-  if (!supabase) return null;
+  
+  if (!supabase) {
+    return (
+      <div className="flex min-h-screen items-center justify-center p-8 text-center flex-col gap-4">
+        <h1 className="text-3xl font-bold text-red-500">Missing Database Connection</h1>
+        <p>This deployment is missing the Supabase environment variables.</p>
+        <p className="text-sm text-muted-foreground">Please add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to your Vercel project settings.</p>
+      </div>
+    );
+  }
 
   // Parallel data fetching
   const [
